@@ -52,3 +52,19 @@ A Naive Bayes Classifier was trained on the TF-IDF features to classify messages
   - Recall
   - F1-score
   - AUC score
+
+
+## Model Results
+
+The following table summarizes the performance of the Naive Bayes classifier on the test dataset:
+
+| Class           | Precision   | Recall     | F1 Score   |
+|-----------------|-------------|------------|------------|
+| Ham (class 0)   | 0.99        | 0.99       | 0.99       |
+| Spam (class 1)  | 0.95        | 0.91       | 0.93       |
+
+### Confusion Matrix
+|                  | Predicted: Ham | Predicted: Spam |
+|------------------|----------------|-----------------|
+| **Actual: Ham**  | 1205           | 8               |
+| **Actual: Spam** | 16             | 164             |
