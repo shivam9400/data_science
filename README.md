@@ -9,11 +9,11 @@ This repository showcases a collection of projects that highlight my skills in m
 
 | Domain | Description | Key Skills |
 |--------|-------------|------------|
-| [Classical ML](./Classical_ML) | Projects focused on traditional machine learning models such as regression, decision trees, and ensemble methods | Supervised Learning, Model Evaluation, XGBoost, Scikit-learn |
-| [Statistics](./Statistics) | Projects involving statistical analysis, hypothesis testing, and inferential techniques | A/B Testing, Hypothesis Testing, P-values, Statistical Inference |
-| [Deep Learning](./Deep_Learning) | Projects using neural networks and deep architectures for structured or unstructured data | LSTM, TensorFlow/Keras|
-| [NLP](./NLP) | Natural Language Processing projects for text classification, sentiment analysis, and embeddings | NLP, TF-IDF, Text Cleaning, Logistic Regression, Tokenization |
-| [Time Series](./Time_Series) | Projects that involve time-based data and forecasting future trends using statistical or ML techniques | Time Series Analysis, ARIMA, Prophet, Rolling Statistics, Forecasting |
+| Classical ML | Projects focused on traditional machine learning models such as regression, decision trees, and ensemble methods | Supervised Learning, Model Evaluation, XGBoost, Scikit-learn |
+| Statistics | Projects involving statistical analysis, hypothesis testing, and inferential techniques | A/B Testing, Hypothesis Testing, P-values, Statistical Inference |
+| Deep Learning | Projects using neural networks and deep architectures for structured or unstructured data | LSTM, TensorFlow/Keras|
+| NLP | Natural Language Processing projects for text classification, sentiment analysis, and embeddings | NLP, TF-IDF, Text Cleaning, Logistic Regression, Tokenization |
+| Time Series | Projects that involve time-based data and forecasting future trends using statistical or ML techniques | Time Series Analysis, ARIMA, Prophet, Rolling Statistics, Forecasting |
 
 > 🔗 Each folder contains a complete project with code, a cleaned notebook, README, and (when applicable) datasets or links.
 
