@@ -22,19 +22,20 @@ This repository contains a simple implementation of a **single-layer perceptron*
 
 ### 2. **Forward Pass**
 - Compute linear output:  
-  \[
-  z = \mathbf{w}^\top \mathbf{x} + b
-  \]
+  'z = wᵀ · x + b'
 - Apply activation function (Heaviside)
 
 ### 3. **Training Loop**
 - Loop over examples and update weights:
-  \[
-  \mathbf{w} \leftarrow \mathbf{w} + \eta \cdot (y - \hat{y}) \cdot \mathbf{x}
-  \]
-  \[
-  b \leftarrow b + \eta \cdot (y - \hat{y})
-  \]
+  'w ← w + η × (y - ŷ) × x'
+  'b ← b + η × (y - ŷ)'
+  where:  
+  - `w` = weight vector  
+  - `b` = bias term  
+  - `η` = learning rate  
+  - `y` = true label  
+  - `ŷ` = predicted label  
+  - `x` = input feature vector 
 
 ### 4. **Evaluation**
 - Predict on the Iris dataset
