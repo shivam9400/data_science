@@ -53,7 +53,7 @@ Highlight key findings, metrics, or visuals.
 
 
 Epoch learning of perceptron:
-![Accuracy over Epochs](accuracy_vs_epoch.jpg)
+![Accuracy over Epochs](visuals/accuracy_vs_epoch.jpg)
 
 ## 🧠 Multi-Layer Perceptron from Scratch
 This section contains a simple implementation of a **multi-layer perceptron** using **Python** and **NumPy**, without relying on machine learning libraries like scikit-learn or TensorFlow.
