@@ -22,10 +22,11 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 # --------------- Sidebar ---------------------
 st.sidebar.title("📂 Data Source")
 data_source = st.sidebar.radio("Choose data source:", ["Use GitHub Sample", "Upload CSV"])
-@st.cache_data
 
+@st.cache_data
 def load_sample_data():
-    return pd.read_csv(st.secrets["strava"]["sample_csv"])
+    csv_url = st.secrets["strava"]["sample_csv"]
+    return pd.read_csv(csv_url)
 
 df = None
 if data_source == "Use GitHub Sample":
