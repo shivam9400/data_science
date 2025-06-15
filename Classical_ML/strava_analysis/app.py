@@ -6,6 +6,7 @@ import plotly.express as px
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
+import statsmodels.api as sm
 
 st.set_page_config(page_title="Strava Dashboard", layout="wide")
 
@@ -16,7 +17,7 @@ data_source = st.sidebar.radio("Choose data source:", ["Use GitHub Sample", "Upl
 @st.cache_data
 
 def load_sample_data():
-    return pd.read_csv("data/strava_exports.csv")
+    return pd.read_csv("https://raw.githubusercontent.com/shivam9400/data_science/refs/heads/strava_streamlit/Classical_ML/strava_analysis/data/strava_exports.csv")
 
 df = None
 if data_source == "Use GitHub Sample":
