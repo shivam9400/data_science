@@ -9,6 +9,7 @@ from sklearn.cluster import KMeans
 
 st.set_page_config(page_title="Strava Dashboard", layout="wide")
 
+
 # --------------- Sidebar ---------------------
 st.sidebar.title("📂 Data Source")
 data_source = st.sidebar.radio("Choose data source:", ["Use GitHub Sample", "Upload CSV"])
