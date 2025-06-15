@@ -10,12 +10,14 @@ import statsmodels.api as sm
 
 st.set_page_config(page_title="Strava Dashboard", layout="wide")
 
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # --------------- Sidebar ---------------------
 st.sidebar.title("📂 Data Source")
