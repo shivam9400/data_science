@@ -17,7 +17,7 @@ data_source = st.sidebar.radio("Choose data source:", ["Use GitHub Sample", "Upl
 @st.cache_data
 
 def load_sample_data():
-    return pd.read_csv("https://raw.githubusercontent.com/shivam9400/data_science/refs/heads/strava_streamlit/Classical_ML/strava_analysis/data/strava_exports.csv")
+    return pd.read_csv(st.secrets["GITHUB_CSV_URL"])
 
 df = None
 if data_source == "Use GitHub Sample":
