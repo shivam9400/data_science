@@ -10,16 +10,29 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Strava Dashboard", layout="wide")
 
 # --------------- Sidebar ---------------------
-st.sidebar.title("📂 Upload Strava Data")
-uploaded_file = st.sidebar.file_uploader("Upload your Strava activity CSV file", 
-                                         type=["csv"])
+st.sidebar.title("📂 Data Source")
+data_source = st.sidebar.radio("Choose data source:", ["Use GitHub Sample", "Upload CSV"])
+@st.cache_data
 
+def load_sample_data():
+    return pd.read_csv("data/strava_exports.csv")
+
+df = None
+if data_source == "Use GitHub Sample":
+    df = load_sample_data()
+elif data_source == "Upload CSV":
+    uploaded_file = st.sidebar.file_uploader("Upload your Strava CSV", type=["csv"])
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+
+if df is None:
+    st.warning("Please select a data source.")
+    st.stop()
 # --------------- Main Layout -----------------
 st.title("🏃‍♂️ Strava Running Dashboard")
 
-if uploaded_file:
-    # Load data
-    df = pd.read_csv(uploaded_file)
+if len(df)>0:
+    # Transform and clean data
     df['start_date'] = pd.to_datetime(df['start_date']) # start_date as datetime object
     df['distance_km'] = df['distance'] / 1000  # meters to km
     df['moving_time_min'] = df['moving_time'] / 60  # seconds to minutes
@@ -28,8 +41,8 @@ if uploaded_file:
 
     # Filter by sport_type and other data processing
     runs = df[df['type'] == 'Run'].copy()
-    runs = runs[(runs['pace_min_per_km']>30) & 
-                (runs['pace_min_per_km']<4)  # Filter out extreme paces
+    runs = runs[((runs['pace_min_per_km']<30) & 
+                (runs['pace_min_per_km']>=4))  # Filter out extreme paces
                 ]
     
     runs['training_load'] = runs['distance_km']      # Add a training load proxy
@@ -41,23 +54,28 @@ if uploaded_file:
     
     # --- SECTION 2: Box plot of Pace ---
     with st.expander("Pace Distribution (Box Plot)"):
-        fig1, ax1 = plt.subplots()
+        fig1, ax1 = plt.subplots(figsize=(10, 5))
         sns.boxplot(x=runs['pace_min_per_km'], ax=ax1)
         ax1.set_title("Pace (min/km)")
         st.pyplot(fig1)
 
     # --- SECTION 3: Distance vs Time ---
     with st.expander("Distance vs Time"):
-        fig2 = px.scatter(runs, x='start_date', y='distance_km',
+        fig2 = px.line(runs, x='start_date', y='distance_km',
                           title="Distance (km) over Time", 
-                          labels={"start_date": "Date", "distance_km": "Distance (km)"})
+                          labels={"start_date": "Date", "distance_km": "Distance (km)"}
+                          )
+        fig2.update_traces(line=dict(color='teal'))
         st.plotly_chart(fig2, use_container_width=True)
     
     # --- SECTION 4: Pace vs Time ---
     with st.expander("Pace vs Time"):
         fig3 = px.line(runs, x='start_date', y='pace_min_per_km',
                        title="Pace over Time", 
-                       labels={"start_date": "Date", "pace_min_per_km": "Pace (min/km)"})
+                       labels={"start_date": "Date", "pace_min_per_km": "Pace (min/km)"}
+                       )
+        fig3.update_traces(line=dict(color='orange'))
+        fig3.update_yaxes(autorange='reversed')
         st.plotly_chart(fig3, use_container_width=True)
 
     # --- SECTION 5: Weekly Running Volume ---
@@ -65,13 +83,17 @@ if uploaded_file:
         weekly = runs.groupby('week')['distance_km'].sum().reset_index()
         fig4 = px.line(weekly, x='week', y='distance_km', 
                        title="Weekly Running Volume",
-                       labels={"week": "Week", "distance_km": "Distance (km)"})
+                       labels={"week": "Week", "distance_km": "Distance (km)"},
+                       markers=True
+                       )
+        fig4.update_traces(line=dict(color='purple'))
         st.plotly_chart(fig4, use_container_width=True)
 
     # --- SECTION 6: CTL / ATL / TSB ---
     with st.expander("Fitness Metrics: CTL, ATL, TSB"):
-        daily = runs.copy()
-        daily_load = daily.groupby('start_date')['training_load'].sum().reset_index()
+        daily_load = runs.groupby(runs['start_date'].dt.date).agg({'training_load': 
+                                                           'sum'}).reset_index()
+        daily_load['start_date'] = pd.to_datetime(daily_load['start_date'])
         date_range = pd.date_range(start=daily_load['start_date'].min(), 
                                    end=daily_load['start_date'].max())
         daily_load = daily_load.set_index('start_date').reindex(date_range).fillna(0.0)
@@ -82,14 +104,24 @@ if uploaded_file:
         daily_load['ATL'] = daily_load['load'].rolling(window=7, min_periods=1).mean()
         daily_load['TSB'] = daily_load['CTL'] - daily_load['ATL']
 
-        fig5 = px.line(daily_load, x='date', y=['CTL', 'ATL', 'TSB'],
-                       title="Fitness Metrics Over Time", 
-                       labels={"value": "Score", "date": "Date"})
+        fig5 = px.line(daily_load, 
+                       x='date', y=['CTL', 'ATL', 'TSB'],
+                       title="Fitness Metrics Over Time",
+                       labels={
+                           "value": "Score",
+                           "date": "Date",
+                           "variable": "Metric"
+                           },
+                           color_discrete_map={
+                               'CTL': 'green',
+                               'ATL': 'red',
+                               'TSB': 'blue'}
+                               )
         st.plotly_chart(fig5, use_container_width=True)
 
     # --- SECTION 7: Fatigue vs Pace ---
     with st.expander("Fatigue (TSB) vs Performance (Pace)"):
-        daily_load['date'] = pd.to_datetime(daily_load['date'])
+        daily_load['date'] = pd.to_datetime(daily_load['date']).dt.floor('D').dt.tz_localize(None)
         runs['start_date'] = pd.to_datetime(runs['start_date']).dt.floor('D').dt.tz_localize(None)
 
         merged = pd.merge(runs, daily_load[['date', 'TSB']], 
@@ -98,6 +130,7 @@ if uploaded_file:
         
         fig6 = px.scatter(merged, x='TSB', y='pace_min_per_km',
                           trendline='ols', title="Fatigue (TSB) vs Performance (Pace)")
+        fig6.update_traces(selector=dict(mode='lines'), line=dict(color='red')) 
         st.plotly_chart(fig6, use_container_width=True)
 
     # --- SECTION 8: Clustering Pace & Distance ---
@@ -126,14 +159,16 @@ if uploaded_file:
         pivot = grouped.pivot(index='dow', columns='week', values='training_load')
         mask = pivot == 0
 
-        fig8, ax8 = plt.subplots(figsize=(16, 6))
+        fig8, ax8 = plt.subplots(figsize=(20, 8))
         sns.heatmap(pivot, mask=mask, cmap="YlOrRd", annot=True, 
                     fmt=".0f", linewidths=0.5, linecolor='gray', 
-                    cbar_kws={'label': 'Training Load'})
+                    cbar_kws={'label': 'Training Load'},
+                    square=False,
+                    )
         plt.title("Training Load Heatmap by Week (Mon–Sun)")
         plt.xlabel("Week Starting")
         plt.ylabel("Day of Week")
-        plt.xticks(rotation=45)
+        #plt.xticks(rotation=45)
         st.pyplot(fig8)
 
     # --- SECTION 10: Training Feedback ---
