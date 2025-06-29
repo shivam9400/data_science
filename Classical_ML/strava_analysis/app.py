@@ -162,8 +162,12 @@ if current_data_source == "Strava Authentication":
             f"&scope=read,activity:read_all"
             )
         #st.markdown(f"[🚴 Click to authorize with Strava →]({auth_url})")
+        # st.sidebar.markdown(
+        #     f"""<a href="{auth_url}" target="_self">🚴 Click to authorize with Strava →</a>""",
+        #     unsafe_allow_html=True
+        #     )
         st.sidebar.markdown(
-            f"""<a href="{auth_url}" target="_self">🚴 Click to authorize with Strava →</a>""",
+            f"""<a href="{auth_url}" target="_blank">🚴 Click to authorize with Strava →</a>""",
             unsafe_allow_html=True
             )
 
