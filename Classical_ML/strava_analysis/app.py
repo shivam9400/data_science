@@ -141,8 +141,8 @@ if current_data_source == "Strava Authentication":
     # client_id = st.text_input("Client ID")
     # client_secret = st.text_input("Client Secret", type="password")
     client_link = f"https://www.strava.com/settings/api"
-    # redirect_uri = "https://strava-shivamsharma.streamlit.app"
-    redirect_uri = "http://localhost:8501"
+    redirect_uri = "https://strava-shivamsharma.streamlit.app"
+    # redirect_uri = "http://localhost:8501"
 
     st.sidebar.markdown(f"[Click here to get client ID and secret from Strava →]({client_link})")
     
