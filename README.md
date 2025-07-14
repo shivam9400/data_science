@@ -30,7 +30,13 @@ This repository showcases a collection of projects that highlight my skills in m
 - Statistical Analysis & A/B Testing
 - Visualization
 - Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+---
 
+## 🛠️ Key Data Science Domains
+- NLP
+- Deep Learning
+- Gen AI
+- Predictive Modeling  
 ---
 
 ## 📫 Contact
