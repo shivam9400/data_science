@@ -1,10 +1,10 @@
-# 🚀 Dockerizing a Machine Learning Model
+# Dockerizing a Machine Learning Model
 
 This project demonstrates how to train a simple **RandomForest model** on the Iris dataset and run it inside a **Docker container**.
 
 ---
 
-## 📌 Project Structure
+## Project Structure
 ```text
 .
 ├── model.py
