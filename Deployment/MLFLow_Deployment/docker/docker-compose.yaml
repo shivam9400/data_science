@@ -1,0 +1,15 @@
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - C:/github_projects/data_science/Deployment/docker/mlruns:/mlflow/mlruns
+      - C:/github_projects/data_science/Deployment/docker/artifacts:/mlflow/artifacts
+
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:////mlflow/mlruns/mlflow.db
+      --default-artifact-root file:///mlflow/artifacts/
