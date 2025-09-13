@@ -3,19 +3,11 @@ import tempfile
 import csv
 import streamlit as st
 import pandas as pd
-#from agno.models.openai import OpenAIChat
-from phi.model.openai import OpenAIChat
 from phi.agent.duckdb import DuckDbAgent
-from agno.tools.pandas import PandasTools
-import re
 from huggingface_hub import InferenceClient
 from phi.model.base import Model, ModelResponse
-
-from pydantic import BaseModel, PrivateAttr
+from pydantic import PrivateAttr
 from datetime import datetime
-
-from huggingface_hub import HfApi
-
 from phi.model.base import Model
 from huggingface_hub import InferenceClient
 import json
@@ -40,39 +32,12 @@ class HuggingFaceModel(Model):
         response = self._client.chat_completion(hf_messages, max_tokens=512)
         return ModelResponse(content=response.choices[0].message.content)
 
-
-
 class MessageProxy:
     def __init__(self, content, role="assistant", audio=None, created_at=None):
         self.content = content
         self.role = role
         self.audio = audio
         self.created_at = created_at or datetime.utcnow()
-
-# class HuggingFaceProxy:
-#     def __init__(self, token, model="meta-llama/Meta-Llama-3-8B-Instruct"):
-#         self.name = "llama3"
-#         self.description = "Meta-Llama-3-8B-Instruct via Hugging Face Inference API"
-#         self.client = InferenceClient(model=model, token=token)
-
-#     def response(self, messages):
-#         hf_messages = [{"role": msg.role, "content": msg.content} for msg in messages]
-#         response = self.client.chat_completion(hf_messages, max_tokens=512)
-#         return MessageProxy(content=response.choices[0].message.content)
-
-# class DuckDbModel(BaseModel):
-#     name: str = "llama3"
-#     description: str = "Meta-Llama-3-8B-Instruct via Hugging Face Inference API"
-#     _client: InferenceClient = PrivateAttr()
-
-#     def __init__(self, token, model="meta-llama/Meta-Llama-3-8B-Instruct"):
-#         super().__init__()
-#         self._client = InferenceClient(model=model, token=token)
-
-#     def response(self, messages):
-#         hf_messages = [{"role": msg.role, "content": msg.content} for msg in messages]
-#         response = self._client.chat_completion(hf_messages, max_tokens=512)
-#         return MessageProxy(content=response.choices[0].message.content)
     
 # Function to preprocess and save the uploaded file
 def preprocess_and_save(file):
@@ -152,7 +117,6 @@ if uploaded_file is not None and "openai_key" in st.session_state:
         }
         
         # Initialize the DuckDbAgent for SQL query generation
-        
         duckdb_agent = DuckDbAgent(
             model=HuggingFaceModel(token=st.session_state.openai_key),
             semantic_model=json.dumps(semantic_model),
@@ -196,8 +160,7 @@ if uploaded_file is not None and "openai_key" in st.session_state:
 
                     # Display the response in Streamlit
                     st.markdown(response_content)
-                
-                    
+                  
                 except Exception as e:
                     import traceback
                     st.error(f"Error generating response from the DuckDbAgent: {e}")
