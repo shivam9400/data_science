@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/736494360913978991/ef75d254246b4271b64893226d36535b/artifacts
+end_time: 1757351645852
+entry_point_name: ''
+experiment_id: '736494360913978991'
+lifecycle_stage: active
+run_id: ef75d254246b4271b64893226d36535b
+run_name: fun-newt-674
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757351633770
+status: 3
+tags: []
+user_id: Shivam Sharma

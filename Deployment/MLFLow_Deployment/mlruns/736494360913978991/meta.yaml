@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/736494360913978991
+creation_time: 1757266897128
+experiment_id: '736494360913978991'
+last_update_time: 1757266897128
+lifecycle_stage: active
+name: simple_linear_regression

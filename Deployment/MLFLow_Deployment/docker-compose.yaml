@@ -1,0 +1,11 @@
+version: "3"
+services:
+  mlflow:
+    image: mlflow-image
+    command: mlflow ui --backend-store-uri /app/mlruns --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - C:\github_projects\data_science\Deployment\MLFLow_Deployment\mlruns:/app/mlruns
+    environment:
+      - MLFLOW_RECORD_ENV_VARS_IN_MODEL_LOGGING=false

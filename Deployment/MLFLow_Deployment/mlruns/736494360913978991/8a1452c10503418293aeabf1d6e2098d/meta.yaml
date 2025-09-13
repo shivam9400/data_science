@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/736494360913978991/8a1452c10503418293aeabf1d6e2098d/artifacts
+end_time: 1757351903143
+entry_point_name: ''
+experiment_id: '736494360913978991'
+lifecycle_stage: active
+run_id: 8a1452c10503418293aeabf1d6e2098d
+run_name: welcoming-lark-300
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757351820330
+status: 3
+tags: []
+user_id: Shivam Sharma
