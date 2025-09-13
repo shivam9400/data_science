@@ -1,165 +1,205 @@
-# This is a foundational, runnable example of an agentic AI framework.
-# It simulates the core loop of an agent: perceive, decide, and act.
-# In a real-world application, the `decide` method would typically involve
-# a call to a Large Language Model (LLM).
-
-import time
 import json
-import random
+import tempfile
+import csv
+import streamlit as st
+import pandas as pd
+#from agno.models.openai import OpenAIChat
+from phi.model.openai import OpenAIChat
+from phi.agent.duckdb import DuckDbAgent
+from agno.tools.pandas import PandasTools
+import re
+from huggingface_hub import InferenceClient
+from phi.model.base import Model, ModelResponse
 
-# A simple tool to simulate a web search, as per user instructions.
-# In a real application, this would be a more complex API call.
-# The search tool is included to demonstrate how an agent uses external functionalities.
-# It uses a placeholder tool call for demonstration purposes.
-def google_search(query):
-    """Simulates a Google Search API call."""
-    print(f"Executing search for: '{query}'...")
-    # This is a placeholder for the actual tool call.
-    # In a real system, this would make an API call and return the result.
-    # We will simulate a search result based on the query.
-    if "latest news" in query:
-        return "Search result: 'AI continues to advance, with new models announced weekly.'"
-    if "weather" in query:
-        return "Search result: 'The weather is sunny with a high of 75°F.'"
-    return f"Search result for '{query}': No specific information found."
+from pydantic import BaseModel, PrivateAttr
+from datetime import datetime
 
-class Tool:
-    """
-    Represents an external tool an agent can use.
+from huggingface_hub import HfApi
 
-    Attributes:
-        name (str): The name of the tool.
-        description (str): A description of what the tool does.
-        function (callable): The function to execute when the tool is used.
-    """
-    def __init__(self, name, description, function):
-        self.name = name
-        self.description = description
-        self.function = function
+from phi.model.base import Model
+from huggingface_hub import InferenceClient
+import json
 
-class Environment:
-    """
-    Represents the world the agent interacts with.
 
-    Attributes:
-        state (str): The current state of the environment.
-        tools (dict): A dictionary mapping tool names to Tool objects.
-    """
-    def __init__(self):
-        self.state = "The agent is in a quiet room."
-        self.tools = {
-            "google_search": Tool(
-                name="google_search",
-                description="A tool to search for information on the web.",
-                function=google_search
-            )
+class HuggingFaceModel(Model):
+    # Define a required Pydantic field that `DuckDbAgent` expects
+    model: str = "meta-llama/Meta-Llama-3-8B-Instruct"
+
+    # Private (non-Pydantic) attribute
+    _client: InferenceClient = PrivateAttr()
+
+    def __init__(self, token: str, model: str = "meta-llama/Meta-Llama-3-8B-Instruct", **kwargs):
+        # Pass the `model` field up to BaseModel
+        super().__init__(model=model, **kwargs)
+
+        # Attach Hugging Face client
+        self._client = InferenceClient(model=model, token=token)
+
+    def response(self, messages, **kwargs):
+        hf_messages = [{"role": msg.role, "content": msg.content} for msg in messages]
+        response = self._client.chat_completion(hf_messages, max_tokens=512)
+        return ModelResponse(content=response.choices[0].message.content)
+
+
+
+class MessageProxy:
+    def __init__(self, content, role="assistant", audio=None, created_at=None):
+        self.content = content
+        self.role = role
+        self.audio = audio
+        self.created_at = created_at or datetime.utcnow()
+
+# class HuggingFaceProxy:
+#     def __init__(self, token, model="meta-llama/Meta-Llama-3-8B-Instruct"):
+#         self.name = "llama3"
+#         self.description = "Meta-Llama-3-8B-Instruct via Hugging Face Inference API"
+#         self.client = InferenceClient(model=model, token=token)
+
+#     def response(self, messages):
+#         hf_messages = [{"role": msg.role, "content": msg.content} for msg in messages]
+#         response = self.client.chat_completion(hf_messages, max_tokens=512)
+#         return MessageProxy(content=response.choices[0].message.content)
+
+# class DuckDbModel(BaseModel):
+#     name: str = "llama3"
+#     description: str = "Meta-Llama-3-8B-Instruct via Hugging Face Inference API"
+#     _client: InferenceClient = PrivateAttr()
+
+#     def __init__(self, token, model="meta-llama/Meta-Llama-3-8B-Instruct"):
+#         super().__init__()
+#         self._client = InferenceClient(model=model, token=token)
+
+#     def response(self, messages):
+#         hf_messages = [{"role": msg.role, "content": msg.content} for msg in messages]
+#         response = self._client.chat_completion(hf_messages, max_tokens=512)
+#         return MessageProxy(content=response.choices[0].message.content)
+    
+# Function to preprocess and save the uploaded file
+def preprocess_and_save(file):
+    try:
+        # Read the uploaded file into a DataFrame
+        if file.name.endswith('.csv'):
+            df = pd.read_csv(file, encoding='utf-8', na_values=['NA', 'N/A', 'missing'])
+        elif file.name.endswith('.xlsx'):
+            df = pd.read_excel(file, na_values=['NA', 'N/A', 'missing'])
+        else:
+            st.error("Unsupported file format. Please upload a CSV or Excel file.")
+            return None, None, None
+        
+        # Ensure string columns are properly quoted
+        for col in df.select_dtypes(include=['object']):
+            df[col] = df[col].astype(str).replace({r'"': '""'}, regex=True)
+        
+        # Parse dates and numeric columns
+        for col in df.columns:
+            if 'date' in col.lower():
+                df[col] = pd.to_datetime(df[col], errors='coerce')
+            elif df[col].dtype == 'object':
+                try:
+                    df[col] = pd.to_numeric(df[col])
+                except (ValueError, TypeError):
+                    # Keep as is if conversion fails
+                    pass
+        
+        # Create a temporary file to save the preprocessed data
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as temp_file:
+            temp_path = temp_file.name
+            # Save the DataFrame to the temporary CSV file with quotes around string fields
+            df.to_csv(temp_path, index=False, quoting=csv.QUOTE_ALL)
+        
+        return temp_path, df.columns.tolist(), df  # Return the DataFrame as well
+    except Exception as e:
+        st.error(f"Error processing file: {e}")
+        return None, None, None
+
+# Streamlit app
+st.title("📊 Data Analyst Agent")
+
+# Sidebar for API keys
+with st.sidebar:
+    st.header("API Keys")
+    openai_key = st.text_input("Enter your Hugging Face API key:", type="password")
+    if openai_key:
+        st.session_state.openai_key = openai_key
+        st.success("Hugging Face API key saved!")
+    else:
+        st.warning("Please enter your OpenAI API key to proceed.")
+
+# File upload widget
+uploaded_file = st.file_uploader("Upload a CSV or Excel file", type=["csv", "xlsx"])
+
+if uploaded_file is not None and "openai_key" in st.session_state:
+    # Preprocess and save the uploaded file
+    temp_path, columns, df = preprocess_and_save(uploaded_file)
+    
+    if temp_path and columns and df is not None:
+        # Display the uploaded data as a table
+        st.write("Uploaded Data:")
+        st.dataframe(df)  # Use st.dataframe for an interactive table
+        
+        # Display the columns of the uploaded data
+        st.write("Uploaded columns:", columns)
+        
+        # Configure the semantic model with the temporary file path
+        semantic_model = {
+            "tables": [
+                {
+                    "name": "uploaded_data",
+                    "description": "Contains the uploaded dataset.",
+                    "path": temp_path,
+                }
+            ]
         }
-
-    def update_state(self, new_state):
-        """Updates the environment's state."""
-        self.state = new_state
-
-    def execute_action(self, action):
-        """
-        Executes an action in the environment.
-        An action can be a simple state change or a tool use.
-        """
-        if isinstance(action, tuple) and action[0] in self.tools:
-            tool_name, tool_input = action
-            tool_result = self.tools[tool_name].function(tool_input)
-            self.update_state(f"The agent used the {tool_name} tool. Result: {tool_result}")
-        else:
-            self.update_state(action)
-
-class Agent:
-    """
-    The core agent class that perceives, decides, and acts.
-
-    Attributes:
-        name (str): The name of the agent.
-        tools (list): A list of Tool objects the agent has access to.
-    """
-    def __init__(self, name, tools=None):
-        self.name = name
-        self.tools = tools if tools is not None else []
-        self.memory = []
-        print(f"Agent '{self.name}' initialized with {len(self.tools)} tools.")
-
-    def perceive(self, environment):
-        """
-        Observes the current state of the environment.
-        In a real application, this could involve processing sensor data.
-        """
-        perception = environment.state
-        print(f"Agent '{self.name}' perceives: '{perception}'")
-        return perception
-
-    def decide(self, perception):
-        """
-        Decides on the next action based on perception and memory.
-        This is the brain of the agent. In a real system, an LLM would generate the action.
-        """
-        print(f"Agent '{self.name}' is deciding on the next action...")
-        self.memory.append(perception)
-
-        # Simple decision-making logic based on keywords.
-        # This is where an LLM call would be made in a real agentic framework.
-        if "time to search" in perception:
-            # Decide to use a tool.
-            return ("google_search", "latest news on AI")
-        elif "something is not right" in perception:
-            # Decide to use a tool with a different query.
-            return ("google_search", "current weather")
-        elif len(self.memory) > 3 and "search" in self.memory[-2]:
-            # Decide to take a different action after using a tool.
-            return f"The agent is satisfied with the search results and is now thinking."
-        else:
-            # Decide on a simple action.
-            return f"The agent is contemplating its existence."
-
-    def act(self, action, environment):
-        """
-        Executes the chosen action in the environment.
-        """
-        print(f"Agent '{self.name}' is acting: '{action}'")
-        environment.execute_action(action)
-
-def main():
-    """Main function to run the agentic framework simulation."""
-    print("--- Starting Agentic Framework Simulation ---")
-    
-    # 1. Initialize the environment and tools.
-    env = Environment()
-    
-    # 2. Initialize the agent with its tools.
-    tools = [env.tools["google_search"]]
-    agent = Agent(name="Gemini-AI", tools=tools)
-
-    # 3. Simulation loop.
-    steps = 0
-    while steps < 5:
-        print("\n--- Step", steps + 1, "---")
         
-        # 3a. Agent perceives the environment.
-        perception = agent.perceive(env)
+        # Initialize the DuckDbAgent for SQL query generation
         
-        # 3b. Agent decides on an action.
-        # We'll manually change the environment state to trigger a tool use.
-        if steps == 1:
-            env.update_state("The agent feels like it's time to search for information.")
-        elif steps == 3:
-            env.update_state("The agent feels like something is not right, and decides to check weather.")
+        duckdb_agent = DuckDbAgent(
+            model=HuggingFaceModel(token=st.session_state.openai_key),
+            semantic_model=json.dumps(semantic_model),
+            tools=[],
+            markdown=True,
+            system_prompt=(
+                "You are an expert data analyst. Generate SQL queries to solve the user's query. "
+                "Return only the SQL query, enclosed in ```sql``` and give the final answer."
+            ),
+        )
+        # Initialize code storage in session state
+        if "generated_code" not in st.session_state:
+            st.session_state.generated_code = None
         
-        action = agent.decide(perception)
+        # Main query input widget
+        user_query = st.text_area("Ask a query about the data:")
         
-        # 3c. Agent acts on the environment.
-        agent.act(action, env)
+        # Add info message about terminal output
+        st.info("💡 Check your terminal for a clearer output of the agent's response")
+        
+        if st.button("Submit Query"):
+            if user_query.strip() == "":
+                st.warning("Please enter a query.")
+            else:
+                try:
+                    # Show loading spinner while processing
+                    with st.spinner('Processing your query...'):
+                        # Get the response from DuckDbAgent
+               
+                        response1 = duckdb_agent.run(user_query)
 
-        steps += 1
-        time.sleep(1) # Pause for 1 second to make the simulation readable.
+                        # Extract the content from the RunResponse object
+                        if hasattr(response1, 'content'):
+                            response_content = response1.content
+                        else:
+                            response_content = str(response1)
+                        response = duckdb_agent.print_response(
+                        user_query,
+                        stream=False,
+                        )
 
-    print("\n--- Simulation Complete ---")
-
-if __name__ == "__main__":
-    main()
-    #print(2+2)
+                    # Display the response in Streamlit
+                    st.markdown(response_content)
+                
+                    
+                except Exception as e:
+                    import traceback
+                    st.error(f"Error generating response from the DuckDbAgent: {e}")
+                    st.error("Please try rephrasing your query or check if the data format is correct.")
+                    st.error(traceback.format_exc())
