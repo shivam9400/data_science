@@ -1,0 +1,1332 @@
+quarter,team,sales
+Q1-2022,Marketing,150000
+Q1-2022,Sales,250000
+Q1-2022,Engineering,100000
+Q1-2022,Customer Support,50000
+Q2-2022,Marketing,180000
+Q2-2022,Sales,280000
+Q2-2022,Engineering,110000
+Q2-2022,Customer Support,55000
+Q3-2022,Marketing,-50000
+Q3-2022,Sales,300000
+Q3-2022,Engineering,200000
+Q3-2022,Customer Support,60000
+Q4-2022,Marketing,210000
+Q4-2022,Sales,50000000
+Q4-2022,Engineering,N/A
+Q4-2022,Customer Support,65000
+Q1-2023,Marketing,195000
+Q1-2023,Sales,290000
+Q1-2023,Engineering,120000
+Q1-2023,Customer Support,62000
+Q2-2023,Marketing,205000
+Q2-2023,Sales,310000
+Q2-2023,Engineering,125000
+Q2-2023,Customer Support,68000
+Q3-2023,Marketing,220000
+Q3-2023,Sales,330000
+Q3-2023,Engineering,140000
+Q3-2023,Customer Support,70000
+Q4-2023,Marketing,240000
+Q4-2023,Sales,350000
+Q4-2023,Engineering,150000
+Q4-2023,Customer Support,75000
+Q1-2024,Marketing,250000
+Q1-2024,Sales,360000
+Q1-2024,Engineering,160000
+Q1-2024,Customer Support,80000
+Q2-2024,Marketing,270000
+Q2-2024,Sales,380000
+Q2-2024,Engineering,170000
+Q2-2024,Customer Support,85000
+Q3-2024,Marketing,280000
+Q3-2024,Sales,400000
+Q3-2024,Engineering,180000
+Q3-2024,Customer Support,90000
+Q4-2024,Marketing,295000
+Q4-2024,Sales,415000
+Q4-2024,Engineering,190000
+Q4-2024,Customer Support,92000
+Q1-2025,Marketing,300000
+Q1-2025,Sales,420000
+Q1-2025,Engineering,200000
+Q1-2025,Customer Support,95000
+Q2-2025,Marketing,310000
+Q2-2025,Sales,430000
+Q2-2025,Engineering,210000
+Q2-2025,Customer Support,100000
+Q3-2025,Marketing,320000
+Q3-2025,Sales,450000
+Q3-2025,Engineering,220000
+Q3-2025,Customer Support,105000
+Q4-2025,Marketing,330000
+Q4-2025,Sales,460000
+Q4-2025,Engineering,230000
+Q4-2025,Customer Support,110000
+Q1-2026,Marketing,340000
+Q1-2026,Sales,470000
+Q1-2026,Engineering,240000
+Q1-2026,Customer Support,115000
+Q2-2026,Marketing,350000
+Q2-2026,Sales,480000
+Q2-2026,Engineering,250000
+Q2-2026,Customer Support,120000
+Q3-2026,Marketing,360000
+Q3-2026,Sales,490000
+Q3-2026,Engineering,260000
+Q3-2026,Customer Support,125000
+Q4-2026,Marketing,370000
+Q4-2026,Sales,500000
+Q4-2026,Engineering,270000
+Q4-2026,Customer Support,130000
+Q1-2027,Marketing,380000
+Q1-2027,Sales,510000
+Q1-2027,Engineering,280000
+Q1-2027,Customer Support,135000
+Q2-2027,Marketing,390000
+Q2-2027,Sales,520000
+Q2-2027,Engineering,290000
+Q2-2027,Customer Support,140000
+Q3-2027,Marketing,400000
+Q3-2027,Sales,530000
+Q3-2027,Engineering,300000
+Q3-2027,Customer Support,145000
+Q4-2027,Marketing,410000
+Q4-2027,Sales,540000
+Q4-2027,Engineering,310000
+Q4-2027,Customer Support,150000
+Q1-2028,Marketing,420000
+Q1-2028,Sales,550000
+Q1-2028,Engineering,320000
+Q1-2028,Customer Support,155000
+Q2-2028,Marketing,430000
+Q2-2028,Sales,560000
+Q2-2028,Engineering,330000
+Q2-2028,Customer Support,160000
+Q3-2028,Marketing,440000
+Q3-2028,Sales,570000
+Q3-2028,Engineering,340000
+Q3-2028,Customer Support,165000
+Q4-2028,Marketing,450000
+Q4-2028,Sales,580000
+Q4-2028,Engineering,350000
+Q4-2028,Customer Support,170000
+Q1-2029,Marketing,460000
+Q1-2029,Sales,590000
+Q1-2029,Engineering,360000
+Q1-2029,Customer Support,175000
+Q2-2029,Marketing,470000
+Q2-2029,Sales,600000
+Q2-2029,Engineering,370000
+Q2-2029,Customer Support,180000
+Q3-2029,Marketing,480000
+Q3-2029,Sales,610000
+Q3-2029,Engineering,380000
+Q3-2029,Customer Support,185000
+Q4-2029,Marketing,490000
+Q4-2029,Sales,620000
+Q4-2029,Engineering,390000
+Q4-2029,Customer Support,190000
+Q1-2030,Marketing,500000
+Q1-2030,Sales,630000
+Q1-2030,Engineering,400000
+Q1-2030,Customer Support,195000
+Q2-2030,Marketing,510000
+Q2-2030,Sales,640000
+Q2-2030,Engineering,410000
+Q2-2030,Customer Support,200000
+Q3-2030,Marketing,520000
+Q3-2030,Sales,650000
+Q3-2030,Engineering,420000
+Q3-2030,Customer Support,205000
+Q4-2030,Marketing,530000
+Q4-2030,Sales,660000
+Q4-2030,Engineering,430000
+Q4-2030,Customer Support,210000
+Q1-2031,Marketing,540000
+Q1-2031,Sales,670000
+Q1-2031,Engineering,440000
+Q1-2031,Customer Support,215000
+Q2-2031,Marketing,550000
+Q2-2031,Sales,680000
+Q2-2031,Engineering,450000
+Q2-2031,Customer Support,220000
+Q3-2031,Marketing,560000
+Q3-2031,Sales,690000
+Q3-2031,Engineering,460000
+Q3-2031,Customer Support,225000
+Q4-2031,Marketing,570000
+Q4-2031,Sales,700000
+Q4-2031,Engineering,470000
+Q4-2031,Customer Support,230000
+Q1-2032,Marketing,580000
+Q1-2032,Sales,710000
+Q1-2032,Engineering,480000
+Q1-2032,Customer Support,235000
+Q2-2032,Marketing,590000
+Q2-2032,Sales,720000
+Q2-2032,Engineering,490000
+Q2-2032,Customer Support,240000
+Q3-2032,Marketing,600000
+Q3-2032,Sales,730000
+Q3-2032,Engineering,500000
+Q3-2032,Customer Support,245000
+Q4-2032,Marketing,610000
+Q4-2032,Sales,740000
+Q4-2032,Engineering,510000
+Q4-2032,Customer Support,250000
+Q1-2033,Marketing,620000
+Q1-2033,Sales,750000
+Q1-2033,Engineering,520000
+Q1-2033,Customer Support,255000
+Q2-2033,Marketing,630000
+Q2-2033,Sales,760000
+Q2-2033,Engineering,530000
+Q2-2033,Customer Support,260000
+Q3-2033,Marketing,640000
+Q3-2033,Sales,770000
+Q3-2033,Engineering,540000
+Q3-2033,Customer Support,265000
+Q4-2033,Marketing,650000
+Q4-2033,Sales,780000
+Q4-2033,Engineering,550000
+Q4-2033,Customer Support,270000
+Q1-2034,Marketing,660000
+Q1-2034,Sales,790000
+Q1-2034,Engineering,560000
+Q1-2034,Customer Support,275000
+Q2-2034,Marketing,670000
+Q2-2034,Sales,800000
+Q2-2034,Engineering,570000
+Q2-2034,Customer Support,280000
+Q3-2034,Marketing,680000
+Q3-2034,Sales,810000
+Q3-2034,Engineering,580000
+Q3-2034,Customer Support,285000
+Q4-2034,Marketing,690000
+Q4-2034,Sales,820000
+Q4-2034,Engineering,590000
+Q4-2034,Customer Support,290000
+Q1-2035,Marketing,700000
+Q1-2035,Sales,830000
+Q1-2035,Engineering,600000
+Q1-2035,Customer Support,295000
+Q2-2035,Marketing,710000
+Q2-2035,Sales,840000
+Q2-2035,Engineering,610000
+Q2-2035,Customer Support,300000
+Q3-2035,Marketing,720000
+Q3-2035,Sales,850000
+Q3-2035,Engineering,620000
+Q3-2035,Customer Support,305000
+Q4-2035,Marketing,730000
+Q4-2035,Sales,860000
+Q4-2035,Engineering,630000
+Q4-2035,Customer Support,310000
+Q1-2036,Marketing,740000
+Q1-2036,Sales,870000
+Q1-2036,Engineering,640000
+Q1-2036,Customer Support,315000
+Q2-2036,Marketing,750000
+Q2-2036,Sales,880000
+Q2-2036,Engineering,650000
+Q2-2036,Customer Support,320000
+Q3-2036,Marketing,760000
+Q3-2036,Sales,890000
+Q3-2036,Engineering,660000
+Q3-2036,Customer Support,325000
+Q4-2036,Marketing,770000
+Q4-2036,Sales,900000
+Q4-2036,Engineering,670000
+Q4-2036,Customer Support,330000
+Q1-2037,Marketing,780000
+Q1-2037,Sales,910000
+Q1-2037,Engineering,680000
+Q1-2037,Customer Support,335000
+Q2-2037,Marketing,790000
+Q2-2037,Sales,920000
+Q2-2037,Engineering,690000
+Q2-2037,Customer Support,340000
+Q3-2037,Marketing,800000
+Q3-2037,Sales,930000
+Q3-2037,Engineering,700000
+Q3-2037,Customer Support,345000
+Q4-2037,Marketing,810000
+Q4-2037,Sales,940000
+Q4-2037,Engineering,710000
+Q4-2037,Customer Support,350000
+Q1-2038,Marketing,820000
+Q1-2038,Sales,950000
+Q1-2038,Engineering,720000
+Q1-2038,Customer Support,355000
+Q2-2038,Marketing,830000
+Q2-2038,Sales,960000
+Q2-2038,Engineering,730000
+Q2-2038,Customer Support,360000
+Q3-2038,Marketing,840000
+Q3-2038,Sales,970000
+Q3-2038,Engineering,740000
+Q3-2038,Customer Support,365000
+Q4-2038,Marketing,850000
+Q4-2038,Sales,980000
+Q4-2038,Engineering,750000
+Q4-2038,Customer Support,370000
+Q1-2039,Marketing,860000
+Q1-2039,Sales,990000
+Q1-2039,Engineering,760000
+Q1-2039,Customer Support,375000
+Q2-2039,Marketing,870000
+Q2-2039,Sales,1000000
+Q2-2039,Engineering,770000
+Q2-2039,Customer Support,380000
+Q3-2039,Marketing,880000
+Q3-2039,Sales,1010000
+Q3-2039,Engineering,780000
+Q3-2039,Customer Support,385000
+Q4-2039,Marketing,890000
+Q4-2039,Sales,1020000
+Q4-2039,Engineering,790000
+Q4-2039,Customer Support,390000
+Q1-2040,Marketing,900000
+Q1-2040,Sales,1030000
+Q1-2040,Engineering,800000
+Q1-2040,Customer Support,395000
+Q2-2040,Marketing,910000
+Q2-2040,Sales,1040000
+Q2-2040,Engineering,810000
+Q2-2040,Customer Support,400000
+Q3-2040,Marketing,920000
+Q3-2040,Sales,1050000
+Q3-2040,Engineering,820000
+Q3-2040,Customer Support,405000
+Q4-2040,Marketing,930000
+Q4-2040,Sales,1060000
+Q4-2040,Engineering,830000
+Q4-2040,Customer Support,410000
+Q1-2041,Marketing,940000
+Q1-2041,Sales,1070000
+Q1-2041,Engineering,840000
+Q1-2041,Customer Support,415000
+Q2-2041,Marketing,950000
+Q2-2041,Sales,1080000
+Q2-2041,Engineering,850000
+Q2-2041,Customer Support,420000
+Q3-2041,Marketing,960000
+Q3-2041,Sales,1090000
+Q3-2041,Engineering,860000
+Q3-2041,Customer Support,425000
+Q4-2041,Marketing,970000
+Q4-2041,Sales,1100000
+Q4-2041,Engineering,870000
+Q4-2041,Customer Support,430000
+Q1-2042,Marketing,980000
+Q1-2042,Sales,1110000
+Q1-2042,Engineering,880000
+Q1-2042,Customer Support,435000
+Q2-2042,Marketing,990000
+Q2-2042,Sales,1120000
+Q2-2042,Engineering,890000
+Q2-2042,Customer Support,440000
+Q3-2042,Marketing,1000000
+Q3-2042,Sales,1130000
+Q3-2042,Engineering,900000
+Q3-2042,Customer Support,445000
+Q4-2042,Marketing,1010000
+Q4-2042,Sales,1140000
+Q4-2042,Engineering,910000
+Q4-2042,Customer Support,450000
+Q1-2043,Marketing,1020000
+Q1-2043,Sales,1150000
+Q1-2043,Engineering,920000
+Q1-2043,Customer Support,455000
+Q2-2043,Marketing,1030000
+Q2-2043,Sales,1160000
+Q2-2043,Engineering,930000
+Q2-2043,Customer Support,460000
+Q3-2043,Marketing,1040000
+Q3-2043,Sales,1170000
+Q3-2043,Engineering,940000
+Q3-2043,Customer Support,465000
+Q4-2043,Marketing,1050000
+Q4-2043,Sales,1180000
+Q4-2043,Engineering,950000
+Q4-2043,Customer Support,470000
+Q1-2044,Marketing,1060000
+Q1-2044,Sales,1190000
+Q1-2044,Engineering,960000
+Q1-2044,Customer Support,475000
+Q2-2044,Marketing,1070000
+Q2-2044,Sales,1200000
+Q2-2044,Engineering,970000
+Q2-2044,Customer Support,480000
+Q3-2044,Marketing,1080000
+Q3-2044,Sales,1210000
+Q3-2044,Engineering,980000
+Q3-2044,Customer Support,485000
+Q4-2044,Marketing,1090000
+Q4-2044,Sales,1220000
+Q4-2044,Engineering,990000
+Q4-2044,Customer Support,490000
+Q1-2045,Marketing,1100000
+Q1-2045,Sales,1230000
+Q1-2045,Engineering,1000000
+Q1-2045,Customer Support,495000
+Q2-2045,Marketing,1110000
+Q2-2045,Sales,1240000
+Q2-2045,Engineering,1010000
+Q2-2045,Customer Support,500000
+Q3-2045,Marketing,1120000
+Q3-2045,Sales,1250000
+Q3-2045,Engineering,1020000
+Q3-2045,Customer Support,505000
+Q4-2045,Marketing,1130000
+Q4-2045,Sales,1260000
+Q4-2045,Engineering,1030000
+Q4-2045,Customer Support,510000
+Q1-2046,Marketing,1140000
+Q1-2046,Sales,1270000
+Q1-2046,Engineering,1040000
+Q1-2046,Customer Support,515000
+Q2-2046,Marketing,1150000
+Q2-2046,Sales,1280000
+Q2-2046,Engineering,1050000
+Q2-2046,Customer Support,520000
+Q3-2046,Marketing,1160000
+Q3-2046,Sales,1290000
+Q3-2046,Engineering,1060000
+Q3-2046,Customer Support,525000
+Q4-2046,Marketing,1170000
+Q4-2046,Sales,1300000
+Q4-2046,Engineering,1070000
+Q4-2046,Customer Support,530000
+Q1-2047,Marketing,1180000
+Q1-2047,Sales,1310000
+Q1-2047,Engineering,1080000
+Q1-2047,Customer Support,535000
+Q2-2047,Marketing,1190000
+Q2-2047,Sales,1320000
+Q2-2047,Engineering,1090000
+Q2-2047,Customer Support,540000
+Q3-2047,Marketing,1200000
+Q3-2047,Sales,1330000
+Q3-2047,Engineering,1100000
+Q3-2047,Customer Support,545000
+Q4-2047,Marketing,1210000
+Q4-2047,Sales,1340000
+Q4-2047,Engineering,1110000
+Q4-2047,Customer Support,550000
+Q1-2048,Marketing,1220000
+Q1-2048,Sales,1350000
+Q1-2048,Engineering,1120000
+Q1-2048,Customer Support,555000
+Q2-2048,Marketing,1230000
+Q2-2048,Sales,1360000
+Q2-2048,Engineering,1130000
+Q2-2048,Customer Support,560000
+Q3-2048,Marketing,1240000
+Q3-2048,Sales,1370000
+Q3-2048,Engineering,1140000
+Q3-2048,Customer Support,565000
+Q4-2048,Marketing,1250000
+Q4-2048,Sales,1380000
+Q4-2048,Engineering,1150000
+Q4-2048,Customer Support,570000
+Q1-2049,Marketing,1260000
+Q1-2049,Sales,1390000
+Q1-2049,Engineering,1160000
+Q1-2049,Customer Support,575000
+Q2-2049,Marketing,1270000
+Q2-2049,Sales,1400000
+Q2-2049,Engineering,1170000
+Q2-2049,Customer Support,580000
+Q3-2049,Marketing,1280000
+Q3-2049,Sales,1410000
+Q3-2049,Engineering,1180000
+Q3-2049,Customer Support,585000
+Q4-2049,Marketing,1290000
+Q4-2049,Sales,1420000
+Q4-2049,Engineering,1190000
+Q4-2049,Customer Support,590000
+Q1-2050,Marketing,1300000
+Q1-2050,Sales,1430000
+Q1-2050,Engineering,1200000
+Q1-2050,Customer Support,595000
+Q2-2050,Marketing,1310000
+Q2-2050,Sales,1440000
+Q2-2050,Engineering,1210000
+Q2-2050,Customer Support,600000
+Q3-2050,Marketing,1320000
+Q3-2050,Sales,1450000
+Q3-2050,Engineering,1220000
+Q3-2050,Customer Support,605000
+Q4-2050,Marketing,1330000
+Q4-2050,Sales,1460000
+Q4-2050,Engineering,1230000
+Q4-2050,Customer Support,610000
+Q1-2051,Marketing,1340000
+Q1-2051,Sales,1470000
+Q1-2051,Engineering,1240000
+Q1-2051,Customer Support,615000
+Q2-2051,Marketing,1350000
+Q2-2051,Sales,1480000
+Q2-2051,Engineering,1250000
+Q2-2051,Customer Support,620000
+Q3-2051,Marketing,1360000
+Q3-2051,Sales,1490000
+Q3-2051,Engineering,1260000
+Q3-2051,Customer Support,625000
+Q4-2051,Marketing,1370000
+Q4-2051,Sales,1500000
+Q4-2051,Engineering,1270000
+Q4-2051,Customer Support,630000
+Q1-2052,Marketing,1380000
+Q1-2052,Sales,1510000
+Q1-2052,Engineering,1280000
+Q1-2052,Customer Support,635000
+Q2-2052,Marketing,1390000
+Q2-2052,Sales,1520000
+Q2-2052,Engineering,1290000
+Q2-2052,Customer Support,640000
+Q3-2052,Marketing,1400000
+Q3-2052,Sales,1530000
+Q3-2052,Engineering,1300000
+Q3-2052,Customer Support,645000
+Q4-2052,Marketing,1410000
+Q4-2052,Sales,1540000
+Q4-2052,Engineering,1310000
+Q4-2052,Customer Support,650000
+Q1-2053,Marketing,1420000
+Q1-2053,Sales,1550000
+Q1-2053,Engineering,1320000
+Q1-2053,Customer Support,655000
+Q2-2053,Marketing,1430000
+Q2-2053,Sales,1560000
+Q2-2053,Engineering,1330000
+Q2-2053,Customer Support,660000
+Q3-2053,Marketing,1440000
+Q3-2053,Sales,1570000
+Q3-2053,Engineering,1340000
+Q3-2053,Customer Support,665000
+Q4-2053,Marketing,1450000
+Q4-2053,Sales,1580000
+Q4-2053,Engineering,1350000
+Q4-2053,Customer Support,670000
+Q1-2054,Marketing,1460000
+Q1-2054,Sales,1590000
+Q1-2054,Engineering,1360000
+Q1-2054,Customer Support,675000
+Q2-2054,Marketing,1470000
+Q2-2054,Sales,1600000
+Q2-2054,Engineering,1370000
+Q2-2054,Customer Support,680000
+Q3-2054,Marketing,1480000
+Q3-2054,Sales,1610000
+Q3-2054,Engineering,1380000
+Q3-2054,Customer Support,685000
+Q4-2054,Marketing,1490000
+Q4-2054,Sales,1620000
+Q4-2054,Engineering,1390000
+Q4-2054,Customer Support,690000
+Q1-2055,Marketing,1500000
+Q1-2055,Sales,1630000
+Q1-2055,Engineering,1400000
+Q1-2055,Customer Support,695000
+Q2-2055,Marketing,1510000
+Q2-2055,Sales,1640000
+Q2-2055,Engineering,1410000
+Q2-2055,Customer Support,700000
+Q3-2055,Marketing,1520000
+Q3-2055,Sales,1650000
+Q3-2055,Engineering,1420000
+Q3-2055,Customer Support,705000
+Q4-2055,Marketing,1530000
+Q4-2055,Sales,1660000
+Q4-2055,Engineering,1430000
+Q4-2055,Customer Support,710000
+Q1-2056,Marketing,1540000
+Q1-2056,Sales,1670000
+Q1-2056,Engineering,1440000
+Q1-2056,Customer Support,715000
+Q2-2056,Marketing,1550000
+Q2-2056,Sales,1680000
+Q2-2056,Engineering,1450000
+Q2-2056,Customer Support,720000
+Q3-2056,Marketing,1560000
+Q3-2056,Sales,1690000
+Q3-2056,Engineering,1460000
+Q3-2056,Customer Support,725000
+Q4-2056,Marketing,1570000
+Q4-2056,Sales,1700000
+Q4-2056,Engineering,1470000
+Q4-2056,Customer Support,730000
+Q1-2057,Marketing,1580000
+Q1-2057,Sales,1710000
+Q1-2057,Engineering,1480000
+Q1-2057,Customer Support,735000
+Q2-2057,Marketing,1590000
+Q2-2057,Sales,1720000
+Q2-2057,Engineering,1490000
+Q2-2057,Customer Support,740000
+Q3-2057,Marketing,1600000
+Q3-2057,Sales,1730000
+Q3-2057,Engineering,1500000
+Q3-2057,Customer Support,745000
+Q4-2057,Marketing,1610000
+Q4-2057,Sales,1740000
+Q4-2057,Engineering,1510000
+Q4-2057,Customer Support,750000
+Q1-2058,Marketing,1620000
+Q1-2058,Sales,1750000
+Q1-2058,Engineering,1520000
+Q1-2058,Customer Support,755000
+Q2-2058,Marketing,1630000
+Q2-2058,Sales,1760000
+Q2-2058,Engineering,1530000
+Q2-2058,Customer Support,760000
+Q3-2058,Marketing,1640000
+Q3-2058,Sales,1770000
+Q3-2058,Engineering,1540000
+Q3-2058,Customer Support,765000
+Q4-2058,Marketing,1650000
+Q4-2058,Sales,1780000
+Q4-2058,Engineering,1550000
+Q4-2058,Customer Support,770000
+Q1-2059,Marketing,1660000
+Q1-2059,Sales,1790000
+Q1-2059,Engineering,1560000
+Q1-2059,Customer Support,775000
+Q2-2059,Marketing,1670000
+Q2-2059,Sales,1800000
+Q2-2059,Engineering,1570000
+Q2-2059,Customer Support,780000
+Q3-2059,Marketing,1680000
+Q3-2059,Sales,1810000
+Q3-2059,Engineering,1580000
+Q3-2059,Customer Support,785000
+Q4-2059,Marketing,1690000
+Q4-2059,Sales,1820000
+Q4-2059,Engineering,1590000
+Q4-2059,Customer Support,790000
+Q1-2060,Marketing,1700000
+Q1-2060,Sales,1830000
+Q1-2060,Engineering,1600000
+Q1-2060,Customer Support,795000
+Q2-2060,Marketing,1710000
+Q2-2060,Sales,1840000
+Q2-2060,Engineering,1610000
+Q2-2060,Customer Support,800000
+Q3-2060,Marketing,1720000
+Q3-2060,Sales,1850000
+Q3-2060,Engineering,1620000
+Q3-2060,Customer Support,805000
+Q4-2060,Marketing,1730000
+Q4-2060,Sales,1860000
+Q4-2060,Engineering,1630000
+Q4-2060,Customer Support,810000
+Q1-2061,Marketing,1740000
+Q1-2061,Sales,1870000
+Q1-2061,Engineering,1640000
+Q1-2061,Customer Support,815000
+Q2-2061,Marketing,1750000
+Q2-2061,Sales,1880000
+Q2-2061,Engineering,1650000
+Q2-2061,Customer Support,820000
+Q3-2061,Marketing,1760000
+Q3-2061,Sales,1890000
+Q3-2061,Engineering,1660000
+Q3-2061,Customer Support,825000
+Q4-2061,Marketing,1770000
+Q4-2061,Sales,1900000
+Q4-2061,Engineering,1670000
+Q4-2061,Customer Support,830000
+Q1-2062,Marketing,1780000
+Q1-2062,Sales,1910000
+Q1-2062,Engineering,1680000
+Q1-2062,Customer Support,835000
+Q2-2062,Marketing,1790000
+Q2-2062,Sales,1920000
+Q2-2062,Engineering,1690000
+Q2-2062,Customer Support,840000
+Q3-2062,Marketing,1800000
+Q3-2062,Sales,1930000
+Q3-2062,Engineering,1700000
+Q3-2062,Customer Support,845000
+Q4-2062,Marketing,1810000
+Q4-2062,Sales,1940000
+Q4-2062,Engineering,1710000
+Q4-2062,Customer Support,850000
+Q1-2063,Marketing,1820000
+Q1-2063,Sales,1950000
+Q1-2063,Engineering,1720000
+Q1-2063,Customer Support,855000
+Q2-2063,Marketing,1830000
+Q2-2063,Sales,1960000
+Q2-2063,Engineering,1730000
+Q2-2063,Customer Support,860000
+Q3-2063,Marketing,1840000
+Q3-2063,Sales,1970000
+Q3-2063,Engineering,1740000
+Q3-2063,Customer Support,865000
+Q4-2063,Marketing,1850000
+Q4-2063,Sales,1980000
+Q4-2063,Engineering,1750000
+Q4-2063,Customer Support,870000
+Q1-2064,Marketing,1860000
+Q1-2064,Sales,1990000
+Q1-2064,Engineering,1760000
+Q1-2064,Customer Support,875000
+Q2-2064,Marketing,1870000
+Q2-2064,Sales,2000000
+Q2-2064,Engineering,1770000
+Q2-2064,Customer Support,880000
+Q3-2064,Marketing,1880000
+Q3-2064,Sales,2010000
+Q3-2064,Engineering,1780000
+Q3-2064,Customer Support,885000
+Q4-2064,Marketing,1890000
+Q4-2064,Sales,2020000
+Q4-2064,Engineering,1790000
+Q4-2064,Customer Support,890000
+Q1-2065,Marketing,1900000
+Q1-2065,Sales,2030000
+Q1-2065,Engineering,1800000
+Q1-2065,Customer Support,895000
+Q2-2065,Marketing,1910000
+Q2-2065,Sales,2040000
+Q2-2065,Engineering,1810000
+Q2-2065,Customer Support,900000
+Q3-2065,Marketing,1920000
+Q3-2065,Sales,2050000
+Q3-2065,Engineering,1820000
+Q3-2065,Customer Support,905000
+Q4-2065,Marketing,1930000
+Q4-2065,Sales,2060000
+Q4-2065,Engineering,1830000
+Q4-2065,Customer Support,910000
+Q1-2066,Marketing,1940000
+Q1-2066,Sales,2070000
+Q1-2066,Engineering,1840000
+Q1-2066,Customer Support,915000
+Q2-2066,Marketing,1950000
+Q2-2066,Sales,2080000
+Q2-2066,Engineering,1850000
+Q2-2066,Customer Support,920000
+Q3-2066,Marketing,1960000
+Q3-2066,Sales,2090000
+Q3-2066,Engineering,1860000
+Q3-2066,Customer Support,925000
+Q4-2066,Marketing,1970000
+Q4-2066,Sales,2100000
+Q4-2066,Engineering,1870000
+Q4-2066,Customer Support,930000
+Q1-2067,Marketing,1980000
+Q1-2067,Sales,2110000
+Q1-2067,Engineering,1880000
+Q1-2067,Customer Support,935000
+Q2-2067,Marketing,1990000
+Q2-2067,Sales,2120000
+Q2-2067,Engineering,1890000
+Q2-2067,Customer Support,940000
+Q3-2067,Marketing,2000000
+Q3-2067,Sales,2130000
+Q3-2067,Engineering,1900000
+Q3-2067,Customer Support,945000
+Q4-2067,Marketing,2010000
+Q4-2067,Sales,2140000
+Q4-2067,Engineering,1910000
+Q4-2067,Customer Support,950000
+Q1-2068,Marketing,2020000
+Q1-2068,Sales,2150000
+Q1-2068,Engineering,1920000
+Q1-2068,Customer Support,955000
+Q2-2068,Marketing,2030000
+Q2-2068,Sales,2160000
+Q2-2068,Engineering,1930000
+Q2-2068,Customer Support,960000
+Q3-2068,Marketing,2040000
+Q3-2068,Sales,2170000
+Q3-2068,Engineering,1940000
+Q3-2068,Customer Support,965000
+Q4-2068,Marketing,2050000
+Q4-2068,Sales,2180000
+Q4-2068,Engineering,1950000
+Q4-2068,Customer Support,970000
+Q1-2069,Marketing,2060000
+Q1-2069,Sales,2190000
+Q1-2069,Engineering,1960000
+Q1-2069,Customer Support,975000
+Q2-2069,Marketing,2070000
+Q2-2069,Sales,2200000
+Q2-2069,Engineering,1970000
+Q2-2069,Customer Support,980000
+Q3-2069,Marketing,2080000
+Q3-2069,Sales,2210000
+Q3-2069,Engineering,1980000
+Q3-2069,Customer Support,985000
+Q4-2069,Marketing,2090000
+Q4-2069,Sales,2220000
+Q4-2069,Engineering,1990000
+Q4-2069,Customer Support,990000
+Q1-2070,Marketing,2100000
+Q1-2070,Sales,2230000
+Q1-2070,Engineering,2000000
+Q1-2070,Customer Support,995000
+Q2-2070,Marketing,2110000
+Q2-2070,Sales,2240000
+Q2-2070,Engineering,2010000
+Q2-2070,Customer Support,1000000
+Q3-2070,Marketing,2120000
+Q3-2070,Sales,2250000
+Q3-2070,Engineering,2020000
+Q3-2070,Customer Support,1005000
+Q4-2070,Marketing,2130000
+Q4-2070,Sales,2260000
+Q4-2070,Engineering,2030000
+Q4-2070,Customer Support,1010000
+Q1-2071,Marketing,2140000
+Q1-2071,Sales,2270000
+Q1-2071,Engineering,2040000
+Q1-2071,Customer Support,1015000
+Q2-2071,Marketing,2150000
+Q2-2071,Sales,2280000
+Q2-2071,Engineering,2050000
+Q2-2071,Customer Support,1020000
+Q3-2071,Marketing,2160000
+Q3-2071,Sales,2290000
+Q3-2071,Engineering,2060000
+Q3-2071,Customer Support,1025000
+Q4-2071,Marketing,2170000
+Q4-2071,Sales,2300000
+Q4-2071,Engineering,2070000
+Q4-2071,Customer Support,1030000
+Q1-2072,Marketing,2180000
+Q1-2072,Sales,2310000
+Q1-2072,Engineering,2080000
+Q1-2072,Customer Support,1035000
+Q2-2072,Marketing,2190000
+Q2-2072,Sales,2320000
+Q2-2072,Engineering,2090000
+Q2-2072,Customer Support,1040000
+Q3-2072,Marketing,2200000
+Q3-2072,Sales,2330000
+Q3-2072,Engineering,2100000
+Q3-2072,Customer Support,1045000
+Q4-2072,Marketing,2210000
+Q4-2072,Sales,2340000
+Q4-2072,Engineering,2110000
+Q4-2072,Customer Support,1050000
+Q1-2073,Marketing,2220000
+Q1-2073,Sales,2350000
+Q1-2073,Engineering,2120000
+Q1-2073,Customer Support,1055000
+Q2-2073,Marketing,2230000
+Q2-2073,Sales,2360000
+Q2-2073,Engineering,2130000
+Q2-2073,Customer Support,1060000
+Q3-2073,Marketing,2240000
+Q3-2073,Sales,2370000
+Q3-2073,Engineering,2140000
+Q3-2073,Customer Support,1065000
+Q4-2073,Marketing,2250000
+Q4-2073,Sales,2380000
+Q4-2073,Engineering,2150000
+Q4-2073,Customer Support,1070000
+Q1-2074,Marketing,2260000
+Q1-2074,Sales,2390000
+Q1-2074,Engineering,2160000
+Q1-2074,Customer Support,1075000
+Q2-2074,Marketing,2270000
+Q2-2074,Sales,2400000
+Q2-2074,Engineering,2170000
+Q2-2074,Customer Support,1080000
+Q3-2074,Marketing,2280000
+Q3-2074,Sales,2410000
+Q3-2074,Engineering,2180000
+Q3-2074,Customer Support,1085000
+Q4-2074,Marketing,2290000
+Q4-2074,Sales,2420000
+Q4-2074,Engineering,2190000
+Q4-2074,Customer Support,1090000
+Q1-2075,Marketing,2300000
+Q1-2075,Sales,2430000
+Q1-2075,Engineering,2200000
+Q1-2075,Customer Support,1095000
+Q2-2075,Marketing,2310000
+Q2-2075,Sales,2440000
+Q2-2075,Engineering,2210000
+Q2-2075,Customer Support,1100000
+Q3-2075,Marketing,2320000
+Q3-2075,Sales,2450000
+Q3-2075,Engineering,2220000
+Q3-2075,Customer Support,1105000
+Q4-2075,Marketing,2330000
+Q4-2075,Sales,2460000
+Q4-2075,Engineering,2230000
+Q4-2075,Customer Support,1110000
+Q1-2076,Marketing,2340000
+Q1-2076,Sales,2470000
+Q1-2076,Engineering,2240000
+Q1-2076,Customer Support,1115000
+Q2-2076,Marketing,2350000
+Q2-2076,Sales,2480000
+Q2-2076,Engineering,2250000
+Q2-2076,Customer Support,1120000
+Q3-2076,Marketing,2360000
+Q3-2076,Sales,2490000
+Q3-2076,Engineering,2260000
+Q3-2076,Customer Support,1125000
+Q4-2076,Marketing,2370000
+Q4-2076,Sales,2500000
+Q4-2076,Engineering,2270000
+Q4-2076,Customer Support,1130000
+Q1-2077,Marketing,2380000
+Q1-2077,Sales,2510000
+Q1-2077,Engineering,2280000
+Q1-2077,Customer Support,1135000
+Q2-2077,Marketing,2390000
+Q2-2077,Sales,2520000
+Q2-2077,Engineering,2290000
+Q2-2077,Customer Support,1140000
+Q3-2077,Marketing,2400000
+Q3-2077,Sales,2530000
+Q3-2077,Engineering,2300000
+Q3-2077,Customer Support,1145000
+Q4-2077,Marketing,2410000
+Q4-2077,Sales,2540000
+Q4-2077,Engineering,2310000
+Q4-2077,Customer Support,1150000
+Q1-2078,Marketing,2420000
+Q1-2078,Sales,2550000
+Q1-2078,Engineering,2320000
+Q1-2078,Customer Support,1155000
+Q2-2078,Marketing,2430000
+Q2-2078,Sales,2560000
+Q2-2078,Engineering,2330000
+Q2-2078,Customer Support,1160000
+Q3-2078,Marketing,2440000
+Q3-2078,Sales,2570000
+Q3-2078,Engineering,2340000
+Q3-2078,Customer Support,1165000
+Q4-2078,Marketing,2450000
+Q4-2078,Sales,2580000
+Q4-2078,Engineering,2350000
+Q4-2078,Customer Support,1170000
+Q1-2079,Marketing,2460000
+Q1-2079,Sales,2590000
+Q1-2079,Engineering,2360000
+Q1-2079,Customer Support,1175000
+Q2-2079,Marketing,2470000
+Q2-2079,Sales,2600000
+Q2-2079,Engineering,2370000
+Q2-2079,Customer Support,1180000
+Q3-2079,Marketing,2480000
+Q3-2079,Sales,2610000
+Q3-2079,Engineering,2380000
+Q3-2079,Customer Support,1185000
+Q4-2079,Marketing,2490000
+Q4-2079,Sales,2620000
+Q4-2079,Engineering,2390000
+Q4-2079,Customer Support,1190000
+Q1-2080,Marketing,2500000
+Q1-2080,Sales,2630000
+Q1-2080,Engineering,2400000
+Q1-2080,Customer Support,1195000
+Q2-2080,Marketing,2510000
+Q2-2080,Sales,2640000
+Q2-2080,Engineering,2410000
+Q2-2080,Customer Support,1200000
+Q3-2080,Marketing,2520000
+Q3-2080,Sales,2650000
+Q3-2080,Engineering,2420000
+Q3-2080,Customer Support,1205000
+Q4-2080,Marketing,2530000
+Q4-2080,Sales,2660000
+Q4-2080,Engineering,2430000
+Q4-2080,Customer Support,1210000
+Q1-2081,Marketing,2540000
+Q1-2081,Sales,2670000
+Q1-2081,Engineering,2440000
+Q1-2081,Customer Support,1215000
+Q2-2081,Marketing,2550000
+Q2-2081,Sales,2680000
+Q2-2081,Engineering,2450000
+Q2-2081,Customer Support,1220000
+Q3-2081,Marketing,2560000
+Q3-2081,Sales,2690000
+Q3-2081,Engineering,2460000
+Q3-2081,Customer Support,1225000
+Q4-2081,Marketing,2570000
+Q4-2081,Sales,2700000
+Q4-2081,Engineering,2470000
+Q4-2081,Customer Support,1230000
+Q1-2082,Marketing,2580000
+Q1-2082,Sales,2710000
+Q1-2082,Engineering,2480000
+Q1-2082,Customer Support,1235000
+Q2-2082,Marketing,2590000
+Q2-2082,Sales,2720000
+Q2-2082,Engineering,2490000
+Q2-2082,Customer Support,1240000
+Q3-2082,Marketing,2600000
+Q3-2082,Sales,2730000
+Q3-2082,Engineering,2500000
+Q3-2082,Customer Support,1245000
+Q4-2082,Marketing,2610000
+Q4-2082,Sales,2740000
+Q4-2082,Engineering,2510000
+Q4-2082,Customer Support,1250000
+Q1-2083,Marketing,2620000
+Q1-2083,Sales,2750000
+Q1-2083,Engineering,2520000
+Q1-2083,Customer Support,1255000
+Q2-2083,Marketing,2630000
+Q2-2083,Sales,2760000
+Q2-2083,Engineering,2530000
+Q2-2083,Customer Support,1260000
+Q3-2083,Marketing,2640000
+Q3-2083,Sales,2770000
+Q3-2083,Engineering,2540000
+Q3-2083,Customer Support,1265000
+Q4-2083,Marketing,2650000
+Q4-2083,Sales,2780000
+Q4-2083,Engineering,2550000
+Q4-2083,Customer Support,1270000
+Q1-2084,Marketing,2660000
+Q1-2084,Sales,2790000
+Q1-2084,Engineering,2560000
+Q1-2084,Customer Support,1275000
+Q2-2084,Marketing,2670000
+Q2-2084,Sales,2800000
+Q2-2084,Engineering,2570000
+Q2-2084,Customer Support,1280000
+Q3-2084,Marketing,2680000
+Q3-2084,Sales,2810000
+Q3-2084,Engineering,2580000
+Q3-2084,Customer Support,1285000
+Q4-2084,Marketing,2690000
+Q4-2084,Sales,2820000
+Q4-2084,Engineering,2590000
+Q4-2084,Customer Support,1290000
+Q1-2085,Marketing,2700000
+Q1-2085,Sales,2830000
+Q1-2085,Engineering,2600000
+Q1-2085,Customer Support,1295000
+Q2-2085,Marketing,2710000
+Q2-2085,Sales,2840000
+Q2-2085,Engineering,2610000
+Q2-2085,Customer Support,1300000
+Q3-2085,Marketing,2720000
+Q3-2085,Sales,2850000
+Q3-2085,Engineering,2620000
+Q3-2085,Customer Support,1305000
+Q4-2085,Marketing,2730000
+Q4-2085,Sales,2860000
+Q4-2085,Engineering,2630000
+Q4-2085,Customer Support,1310000
+Q1-2086,Marketing,2740000
+Q1-2086,Sales,2870000
+Q1-2086,Engineering,2640000
+Q1-2086,Customer Support,1315000
+Q2-2086,Marketing,2750000
+Q2-2086,Sales,2880000
+Q2-2086,Engineering,2650000
+Q2-2086,Customer Support,1320000
+Q3-2086,Marketing,2760000
+Q3-2086,Sales,2890000
+Q3-2086,Engineering,2660000
+Q3-2086,Customer Support,1325000
+Q4-2086,Marketing,2770000
+Q4-2086,Sales,2900000
+Q4-2086,Engineering,2670000
+Q4-2086,Customer Support,1330000
+Q1-2087,Marketing,2780000
+Q1-2087,Sales,2910000
+Q1-2087,Engineering,2680000
+Q1-2087,Customer Support,1335000
+Q2-2087,Marketing,2790000
+Q2-2087,Sales,2920000
+Q2-2087,Engineering,2690000
+Q2-2087,Customer Support,1340000
+Q3-2087,Marketing,2800000
+Q3-2087,Sales,2930000
+Q3-2087,Engineering,2700000
+Q3-2087,Customer Support,1345000
+Q4-2087,Marketing,2810000
+Q4-2087,Sales,2940000
+Q4-2087,Engineering,2710000
+Q4-2087,Customer Support,1350000
+Q1-2088,Marketing,2820000
+Q1-2088,Sales,2950000
+Q1-2088,Engineering,2720000
+Q1-2088,Customer Support,1355000
+Q2-2088,Marketing,2830000
+Q2-2088,Sales,2960000
+Q2-2088,Engineering,2730000
+Q2-2088,Customer Support,1360000
+Q3-2088,Marketing,2840000
+Q3-2088,Sales,2970000
+Q3-2088,Engineering,2740000
+Q3-2088,Customer Support,1365000
+Q4-2088,Marketing,2850000
+Q4-2088,Sales,2980000
+Q4-2088,Engineering,2750000
+Q4-2088,Customer Support,1370000
+Q1-2089,Marketing,2860000
+Q1-2089,Sales,2990000
+Q1-2089,Engineering,2760000
+Q1-2089,Customer Support,1375000
+Q2-2089,Marketing,2870000
+Q2-2089,Sales,3000000
+Q2-2089,Engineering,2770000
+Q2-2089,Customer Support,1380000
+Q3-2089,Marketing,2880000
+Q3-2089,Sales,3010000
+Q3-2089,Engineering,2780000
+Q3-2089,Customer Support,1385000
+Q4-2089,Marketing,2890000
+Q4-2089,Sales,3020000
+Q4-2089,Engineering,2790000
+Q4-2089,Customer Support,1390000
+Q1-2090,Marketing,2900000
+Q1-2090,Sales,3030000
+Q1-2090,Engineering,2800000
+Q1-2090,Customer Support,1395000
+Q2-2090,Marketing,2910000
+Q2-2090,Sales,3040000
+Q2-2090,Engineering,2810000
+Q2-2090,Customer Support,1400000
+Q3-2090,Marketing,2920000
+Q3-2090,Sales,3050000
+Q3-2090,Engineering,2820000
+Q3-2090,Customer Support,1405000
+Q4-2090,Marketing,2930000
+Q4-2090,Sales,3060000
+Q4-2090,Engineering,2830000
+Q4-2090,Customer Support,1410000
+Q1-2091,Marketing,2940000
+Q1-2091,Sales,3070000
+Q1-2091,Engineering,2840000
+Q1-2091,Customer Support,1415000
+Q2-2091,Marketing,2950000
+Q2-2091,Sales,3080000
+Q2-2091,Engineering,2850000
+Q2-2091,Customer Support,1420000
+Q3-2091,Marketing,2960000
+Q3-2091,Sales,3090000
+Q3-2091,Engineering,2860000
+Q3-2091,Customer Support,1425000
+Q4-2091,Marketing,2970000
+Q4-2091,Sales,3100000
+Q4-2091,Engineering,2870000
+Q4-2091,Customer Support,1430000
+Q1-2092,Marketing,2980000
+Q1-2092,Sales,3110000
+Q1-2092,Engineering,2880000
+Q1-2092,Customer Support,1435000
+Q2-2092,Marketing,2990000
+Q2-2092,Sales,3120000
+Q2-2092,Engineering,2890000
+Q2-2092,Customer Support,1440000
+Q3-2092,Marketing,3000000
+Q3-2092,Sales,3130000
+Q3-2092,Engineering,2900000
+Q3-2092,Customer Support,1445000
+Q4-2092,Marketing,3010000
+Q4-2092,Sales,3140000
+Q4-2092,Engineering,2910000
+Q4-2092,Customer Support,1450000
+Q1-2093,Marketing,3020000
+Q1-2093,Sales,3150000
+Q1-2093,Engineering,2920000
+Q1-2093,Customer Support,1455000
+Q2-2093,Marketing,3030000
+Q2-2093,Sales,3160000
+Q2-2093,Engineering,2930000
+Q2-2093,Customer Support,1460000
+Q3-2093,Marketing,3040000
+Q3-2093,Sales,3170000
+Q3-2093,Engineering,2940000
+Q3-2093,Customer Support,1465000
+Q4-2093,Marketing,3050000
+Q4-2093,Sales,3180000
+Q4-2093,Engineering,2950000
+Q4-2093,Customer Support,1470000
+Q1-2094,Marketing,3060000
+Q1-2094,Sales,3190000
+Q1-2094,Engineering,2960000
+Q1-2094,Customer Support,1475000
+Q2-2094,Marketing,3070000
+Q2-2094,Sales,3200000
+Q2-2094,Engineering,2970000
+Q2-2094,Customer Support,1480000
+Q3-2094,Marketing,3080000
+Q3-2094,Sales,3210000
+Q3-2094,Engineering,2980000
+Q3-2094,Customer Support,1485000
+Q4-2094,Marketing,3090000
+Q4-2094,Sales,3220000
+Q4-2094,Engineering,2990000
+Q4-2094,Customer Support,1490000
+Q1-2095,Marketing,3100000
+Q1-2095,Sales,3230000
+Q1-2095,Engineering,3000000
+Q1-2095,Customer Support,1495000
+Q2-2095,Marketing,3110000
+Q2-2095,Sales,3240000
+Q2-2095,Engineering,3010000
+Q2-2095,Customer Support,1500000
+Q3-2095,Marketing,3120000
+Q3-2095,Sales,3250000
+Q3-2095,Engineering,3020000
+Q3-2095,Customer Support,1505000
+Q4-2095,Marketing,3130000
+Q4-2095,Sales,3260000
+Q4-2095,Engineering,3030000
+Q4-2095,Customer Support,1510000
+Q1-2096,Marketing,3140000
+Q1-2096,Sales,3270000
+Q1-2096,Engineering,3040000
+Q1-2096,Customer Support,1515000
+Q2-2096,Marketing,3150000
+Q2-2096,Sales,3280000
+Q2-2096,Engineering,3050000
+Q2-2096,Customer Support,1520000
+Q3-2096,Marketing,3160000
+Q3-2096,Sales,3290000
+Q3-2096,Engineering,3060000
+Q3-2096,Customer Support,1525000
+Q4-2096,Marketing,3170000
+Q4-2096,Sales,3300000
+Q4-2096,Engineering,3070000
+Q4-2096,Customer Support,1530000
+Q1-2097,Marketing,3180000
+Q1-2097,Sales,3310000
+Q1-2097,Engineering,3080000
+Q1-2097,Customer Support,1535000
+Q2-2097,Marketing,3190000
+Q2-2097,Sales,3320000
+Q2-2097,Engineering,3090000
+Q2-2097,Customer Support,1540000
+Q3-2097,Marketing,3200000
+Q3-2097,Sales,3330000
+Q3-2097,Engineering,3100000
+Q3-2097,Customer Support,1545000
+Q4-2097,Marketing,3210000
+Q4-2097,Sales,3340000
+Q4-2097,Engineering,3110000
+Q4-2097,Customer Support,1550000
+Q1-2098,Marketing,3220000
+Q1-2098,Sales,3350000
+Q1-2098,Engineering,3120000
+Q1-2098,Customer Support,1555000
+Q2-2098,Marketing,3230000
+Q2-2098,Sales,3360000
+Q2-2098,Engineering,3130000
+Q2-2098,Customer Support,1560000
+Q3-2098,Marketing,3240000
+Q3-2098,Sales,3370000
+Q3-2098,Engineering,3140000
+Q3-2098,Customer Support,1565000
+Q4-2098,Marketing,3250000
+Q4-2098,Sales,3380000
+Q4-2098,Engineering,3150000
+Q4-2098,Customer Support,1570000
+Q1-2099,Marketing,3260000
+Q1-2099,Sales,3390000
+Q1-2099,Engineering,3160000
+Q1-2099,Customer Support,1575000
+Q2-2099,Marketing,3270000
+Q2-2099,Sales,3400000
+Q2-2099,Engineering,3170000
+Q2-2099,Customer Support,1580000
+Q3-2099,Marketing,3280000
+Q3-2099,Sales,3410000
+Q3-2099,Engineering,3180000
+Q3-2099,Customer Support,1585000
+Q4-2099,Marketing,3290000
+Q4-2099,Sales,3420000
+Q4-2099,Engineering,3190000
+Q4-2099,Customer Support,1590000
+Q1-2100,Marketing,3300000
+Q1-2100,Sales,3430000
+Q1-2100,Engineering,3200000
+Q1-2100,Customer Support,1595000
+Q2-2100,Marketing,3310000
+Q2-2100,Sales,3440000
+Q2-2100,Engineering,3210000
+Q2-2100,Customer Support,1600000
+Q3-2100,Marketing,3320000
+Q3-2100,Sales,3450000
+Q3-2100,Engineering,3220000
+Q3-2100,Customer Support,1605000
+Q4-2100,Marketing,3330000
+Q4-2100,Sales,3460000
+Q4-2100,Engineering,3230000
+Q4-2100,Customer Support,1610000
+Q1-2101,Marketing,3340000
+Q1-2101,Sales,3470000
+Q1-2101,Engineering,3240000
+Q1-2101,Customer Support,1615000
+Q2-2101,Marketing,3350000
+Q2-2101,Sales,3480000
+Q2-2101,Engineering,3250000
+Q2-2101,Customer Support,1620000
+Q3-2101,Marketing,3360000
+Q3-2101,Sales,3490000
+Q3-2101,Engineering,3260000
+Q3-2101,Customer Support,1625000
+Q4-2101,Marketing,3370000
+Q4-2101,Sales,3500000
+Q4-2101,Engineering,3270000
+Q4-2101,Customer Support,1630000
+Q1-2102,Marketing,3380000
+Q1-2102,Sales,3510000
+Q1-2102,Engineering,3280000
+Q1-2102,Customer Support,1635000
+Q2-2102,Marketing,3390000
+Q2-2102,Sales,3520000
+Q2-2102,Engineering,3290000
+Q2-2102,Customer Support,1640000
+Q3-2102,Marketing,3400000
+Q3-2102,Sales,3530000
+Q3-2102,Engineering,3300000
+Q3-2102,Customer Support,1645000
+Q4-2102,Marketing,3410000
+Q4-2102,Sales,3540000
+Q4-2102,Engineering,3310000
+Q4-2102,Customer Support,1650000
+Q1-2103,Marketing,3420000
+Q1-2103,Sales,3550000
+Q1-2103,Engineering,3320000
+Q1-2103,Customer Support,1655000
+Q2-2103,Marketing,3430000
+Q2-2103,Sales,3560000
+Q2-2103,Engineering,3330000
+Q2-2103,Customer Support,1660000
+Q3-2103,Marketing,3440000
+Q3-2103,Sales,3570000
+Q3-2103,Engineering,3340000
+Q3-2103,Customer Support,1665000
+Q4-2103,Marketing,3450000
+Q4-2103,Sales,3580000
+Q4-2103,Engineering,3350000
+Q4-2103,Customer Support,1670000
+Q1-2104,Marketing,3460000
+Q1-2104,Sales,3590000
+Q1-2104,Engineering,3360000
+Q1-2104,Customer Support,1675000
+Q2-2104,Marketing,3470000
+Q2-2104,Sales,3600000
+Q2-2104,Engineering,3370000
+Q2-2104,Customer Support,1680000
+Q3-2104,Marketing,3480000
+Q3-2104,Sales,3610000
+Q3-2104,Engineering,3380000
+Q3-2104,Customer Support,1685000
+Q4-2022,Engineering,N/A
+Q4-2022,Sales,50000000
+Q3-2022,Marketing,-50000
+Q4-2022,Engineering,1990000
+Q4-2022,Sales,3000000
+Q4-2022,Marketing,200000
+Q3-2022,Sales,10000000
