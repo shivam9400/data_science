@@ -1,3 +1,8 @@
+# ABC --> Abstract Base Class
+# purpose is to establish a standard interface for any tokenizer 
+# class used in the project
+# ensures all specific tokenizer implementations behave the same way, 
+# regardless of the underlying library (like Keras or Hugging Face)
 from abc import ABC, abstractmethod
 
 class BaseTokenizer(ABC):

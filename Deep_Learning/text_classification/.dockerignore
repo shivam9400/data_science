@@ -1,0 +1,25 @@
+# Virtual Environments and Configuration
+.venv
+venv/
+.env
+
+# Python temporary files and caches
+*.pyc
+__pycache__
+
+# Git history and files
+.git
+.gitignore
+
+# IDE/Jupyter temporary files and large notebooks
+.vscode/
+.ipynb_checkpoints/
+rough_implementation.ipynb
+
+# Exclude entire subdirectories of 'src' that are NOT needed for inference
+src/data/
+src/embeddings/
+src/models/
+# src/tokenizers/ - NOT EXCLUDED (NEEDED)
+# src/utils/      - NOT EXCLUDED (NEEDED for load_json)
+src/train.py      # Only needed for training

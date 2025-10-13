@@ -9,4 +9,5 @@ class RandomEmbedding:
 
     def build_matrix(self):
         rng = np.random.RandomState(self.seed)
-        return rng.normal(size=(self.vocab_size, self.embedding_dim)).astype('float32')
+        return rng.normal(size=(self.vocab_size, 
+                                self.embedding_dim)).astype('float32')

@@ -2,45 +2,38 @@ import argparse
 from pathlib import Path
 import numpy as np
 from tensorflow.keras.optimizers import Adam
-from src.tokenizers.keras_tokenizer import KerasTokenizerWrapper
-from src.models.model_factory import ModelFactory
-from src.embeddings.random_embedding import RandomEmbedding
-from src.utils.io import save_json
+from tokenizers.keras_tokenizer import KerasTokenizerWrapper
+from models.model_factory import ModelFactory
+from embeddings.random_embedding import RandomEmbedding
+from utils.io import save_json
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
-
-def load_dataset():
-    # toy dataset; replace with real data loader in src/data
-    sentences = [
-        "I love this product, it works great",
-        "Absolutely fantastic service",
-        "This is the best I've used",
-        "Very satisfied and happy",
-        "I hate this, it broke immediately",
-        "Terrible experience, would not recommend",
-        "Awful, I am disappointed",
-        "Not good, very poor quality"
-    ]
-    labels = np.array([1, 1, 1, 1, 0, 0, 0, 0])
-    return sentences, labels
-
+from data.load_dataset import load_dataset
 
 def main(args):
+    # load training sentences and their labels [0, 1]
     sentences, labels = load_dataset()
 
     tokenizer = KerasTokenizerWrapper(num_words=args.vocab_size)
     tokenizer.fit(sentences)
     sequences = tokenizer.texts_to_sequences(sentences)
-    X = pad_sequences(sequences, maxlen=args.max_len, padding='post')
+    X = pad_sequences(sequences, 
+                      maxlen=args.max_len, 
+                      padding='post')
 
     embedding = None
     if args.embedding == 'random':
         emb = RandomEmbedding(vocab_size=args.vocab_size, embedding_dim=args.embedding_dim)
         embedding = emb.build_matrix()
 
-    model = ModelFactory.create(args.architecture, vocab_size=args.vocab_size, max_len=args.max_len,
-                                embedding_dim=args.embedding_dim, embedding_matrix=embedding)
-    model.compile(optimizer=Adam(learning_rate=args.lr), loss='binary_crossentropy', metrics=['accuracy'])
+    model = ModelFactory.create(args.architecture, 
+                                vocab_size=args.vocab_size, 
+                                max_len=args.max_len,
+                                embedding_dim=args.embedding_dim, 
+                                embedding_matrix=embedding)
+    
+    model.compile(optimizer=Adam(learning_rate=args.lr), 
+                  loss='binary_crossentropy', 
+                  metrics=['accuracy'])
     model.fit(X, labels, epochs=args.epochs, batch_size=args.batch_size, verbose=2)
 
     out = Path(args.output_dir)
