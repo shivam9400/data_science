@@ -1,4 +1,3 @@
 .venv
 artifacts
-data
 cleaned_data.pkl
