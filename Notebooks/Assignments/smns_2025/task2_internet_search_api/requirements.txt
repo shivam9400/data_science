@@ -4,3 +4,5 @@ pydantic
 smolagents
 litellm
 duckduckgo-search
+ddgs
+beautifulsoup4
