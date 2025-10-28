@@ -60,7 +60,7 @@ except Exception as e:
     print(f"Agent Initialization Error: {e}")
     agent = None
 
-# API Setu
+# API Setup
 app = FastAPI(
     title="Internet-Search Agent API",
     description="REST API for submitting queries to and checking the status of the Research_Agent."
