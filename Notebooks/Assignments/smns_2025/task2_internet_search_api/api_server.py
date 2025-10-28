@@ -9,16 +9,13 @@ import os
 import logging
 import uvicorn
 
-# --- Configuration for the Agent ---
-# IMPORTANT: Update this NGROK URL every time your tunnel restarts.
-# NOTE: This must be active for the agent to function correctly.
-NGROK_URL = "https://preeminent-untactually-tora.ngrok-free.dev" # Placeholder URL
-
+# Configuration for the Agent
+NGROK_URL = "https://preeminent-untactually-tora.ngrok-free.dev"
 MODEL_ID = "gemma2:2b"
 API_BASE = NGROK_URL
-API_KEY = "" # Assuming LiteLLM/Ollama setup does not require a key here
+API_KEY = ""
 
-# --- Initialization of Agent and Tools (Global Scope) ---
+# Initialization of Agent and Tools
 try:
     # Model configuration
     model = LiteLLMModel(
@@ -61,9 +58,9 @@ try:
 except Exception as e:
     # Handle cases where the smolagents or LLM setup fails
     print(f"Agent Initialization Error: {e}")
-    agent = None # Set to None if initialization fails
+    agent = None
 
-# --- API Setup and Job Management ---
+# API Setu
 app = FastAPI(
     title="Internet-Search Agent API",
     description="REST API for submitting queries to and checking the status of the Research_Agent."
@@ -90,12 +87,10 @@ class StatusResponse(BaseModel):
     result: str | None = None
     time_taken_seconds: float | None = None
 
-# --- Background Task Execution ---
-
+# Background Task Execution
 def run_agent_task(job_id: str, query: str):
     """
     Blocking function that runs the agent.run() call.
-    Executed in a separate thread via ThreadPoolExecutor.
     """
     if not agent:
         agent_jobs[job_id]["status"] = "ERROR"
@@ -111,7 +106,6 @@ def run_agent_task(job_id: str, query: str):
         # The blocking call to the agent
         final_answer = agent.run(query)
         
-        # --- NEW LOGIC: FALLBACK FOR EMPTY RESULT ---
         if not final_answer:
             final_answer = (
                 "The agent completed its execution steps but did not generate a final, synthesized answer. "
@@ -137,7 +131,7 @@ def run_agent_task(job_id: str, query: str):
         print(f"Job {job_id}: Execution finished. Status: {agent_jobs[job_id]['status']}")
 
 
-# --- API Endpoints ---
+# API Endpoints
 
 @app.post("/api/v1/query", response_model=QueryResponse, tags=["Agent Interaction"])
 async def submit_query(request: QueryRequest):
@@ -156,7 +150,6 @@ async def submit_query(request: QueryRequest):
         "time_taken_seconds": None,
     }
 
-    # Use the event loop to run the blocking task in a background thread
     loop = asyncio.get_event_loop()
     loop.run_in_executor(executor, run_agent_task, job_id, request.query)
 
@@ -191,10 +184,8 @@ async def get_status(job_id: str):
     return StatusResponse(**response_data)
 
 
-# --- Server Run Block (for local execution) ---
+# Server Run Block - local testing
 if __name__ == "__main__":
-    # Note: When running in a deployed environment, the server is started differently.
-    # This block is for local testing via 'python api_server.py'.
     print("Starting FastAPI server...")
     print(f"Agent Config: Model={MODEL_ID}, API_BASE={API_BASE}")
     print("To test the API, send a POST request to http://127.0.0.1:8000/api/v1/query")
