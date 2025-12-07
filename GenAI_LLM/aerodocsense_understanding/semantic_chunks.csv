@@ -1,0 +1,186 @@
+chunk_id,text,metadata
+0,Prof.,"{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 0, 'page_label': '1'}"
+1,"Dr. Dieter Scholz   university of applied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+8 Hydraulic Power (ATA 29) 
+ 
+8.1 Definition 
+ 
+Those units and components which furnish hydraulic fluid under pressure (includes pumps, 
+regulators, lines, valves, etc.) to a common point (manifold) for redistribution to other defined 
+systems. (ATA 100) 
+ 
+ 
+ 
+8.2 Purpose 
+ 
+The purpose of the hydraulic system  is to assist the pilot in accomplishing mechanical task 
+that would otherwise be impractical or impossible because of the level of force, work, or 
+power required. On smaller aircraft the flight control surfaces are moved by pilot force. On 
+larger and faster aircraft this becomes impossible and so hydraulic power is applied. A total 
+failure of the flight control system evidently has a catastrophic effect. Consequently, a failure 
+of the hydraulic power supply of la rge aircraft has to be extremely improbable. This required 
+level of safety is achieved with redundancy through three or even four independent hydraulic 
+subsystems. Figure 8.1 A basic hydraulic system","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 0, 'page_label': '1'}"
+2,"Hydraulic Power 8-2 
+Prof. Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+8.3 Principle 
+ 
+Figure 8.1 shows the principle of a hy draulic system . Hydraulic fluid is contained in a 
+reservoir.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 1, 'page_label': '2'}"
+3,"Through a suction line the pump draws fluid from the reservoir and puts is at a 
+higher pressure. Today aircraft hydraulic systems are typically designed to a nominal pressure 
+of 206  bar (3000  psi). The trend is toward higher system pressure: 345  bar (5000  psi). An 
+accumulator serves as temporary energy storage and is able to store or redistribute surplus 
+high-pressure fluid. A pressure-relief valve  is able to shortcut the high -pressure line to the  
+reservoir in case of a system malfunction leading to higher pressure than specified. The 
+pressure differential supplied by the pump is used by hydraulic consumers. The example 
+shows a typical consumer in the flight control system. An actuator piston rod h as to move in 
+and out in order to deflect a control surface (not shown). The actuator piston is moved through 
+hydraulic fluid that enters the left actuator chamber and fluid that leaves the right actuator 
+chamber (or vice versa). A valve schedules the requ ired fluid flow. Shown is a servo valve . The valve has four connections to hydraulic tubes: one connection to each of the two actuator 
+chambers, one connection to the high-pressure line, and one connection to the return line. The 
+valve may be moved into on e of three positions that lead to piston rod extension, piston rod 
+retraction, or no piston rod movement. In the case of a flight control consumer, it is necessary 
+that the valve moves gradually from one position into the other to allow a proportional cont rol 
+of the surface. In case the of landing gear extension and retraction, a selector valve  would be 
+used. The selector valve allows three distinct valve positions without any intermediate 
+positions. During system design the complete circuit, including hy draulic power generation, distribution, 
+and consumption, has to be analyzed. According to the ATA breakdown, the consumers with 
+their valves are allocated to their respective system.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 1, 'page_label': '2'}"
+4,"ATA 29 deals only with power generation 
+and distribution. Three types of  hydraulic fluids exist: vegetable based , mineral based , and synthetic or 
+phosphate ester -based. Transport category aircraft use the purple -colored phosphate ester -
+based fluid – most commonly Skydrol® LD. Skydrol ® shows good performance even at low 
+temperatures, excellent flammability characteristics, and minimal effects on most common 
+aircraft metals, but does react with certain types of paint and can be an eye and respiratory 
+irritant.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 1, 'page_label': '2'}"
+5,"Hydraulic Power 8-3 
+Prof. Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+8.4 Components 
+ 
+The reservoir acts as a storage tank for the system's  fluid. Reservoirs can be broken down 
+into two basic types, in-line and integral, and these can be further classified as pressurized 
+and unpressurized. Integral reservoirs, found on small aircraft, are combined with the pump. Aircraft that operate at low a ltitudes could use unpressurized reservoirs that vent the reservoir 
+to the atmosphere. Other aircraft positively pressurize the reservoir with air from the 
+pneumatic system, hydraulic pressure (bootstrap reservoir) (Figure  8.2), or a spring. In a 
+bootstrap reservoir, high pressure (HP) fluid acts on a small plunger that is coupled with a 
+large plunger that in turn acts on the low pressure (LP) fluid in the reservoir. Commonly, air 
+pressure is used for reservoir pressurization. The air pressure usually needs to be reduced by a 
+pressure regulator. It then enters the airspace above the fluid in the reservoir. Figure 8.2 Hydraulically pressured reservoir known as bootstrap reservoir (VFW 614) 
+ 
+Commonly used are axial multiple -piston pumps. The two principles a pplied are constant 
+displacement and variable displacement .","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 2, 'page_label': '3'}"
+6,"The shaft can be driven by the aircraft engine, by an 
+electric motor, or through a device powered by the pneumatic system. The shaft turns the 
+cylinder block with the pistons. Whenever an elevated  piston is pushed into the cylinder 
+block, fluid is ejected into an out port. Accordingly, during the other half of the revolution on 
+its way back to the elevated position, the piston draws fluid from an in port into the cylinder 
+block. Constant displaceme nt pumps deliver exactly the same amount of fluid every 
+revolution and must incorporate a pressure regulator. Most widely used, however, are variable","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 2, 'page_label': '3'}"
+7,"Hydraulic Power 8-4 
+Prof. Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+displacement axial multiple -piston pumps (Figure 8.3). The variable displacement is achieved 
+by a swashpla te. The angle of the swashplate is adjusted by a pressure controller. At highest 
+swashplate angle, the pump achieves its maximum flow rate, and at zero angle there is no 
+fluid flow. For minor tasks, hand pumps  may be applied. A ram air turbine  (RAT) (Figure 8.8) may be 
+turned into the free stream of air to power a hydraulic pump. This is done in the event of an 
+engine failure or a major electrical system failure. Figure 8.3 Variable displacement axial multiple-piston pump 
+ 
+Three types of accumulators a re known: The diaphragm-type accumulator , the bladder type 
+accumulator, and the piston type accumulator  (Figure 8.4). Diaphragm, bladder, or piston 
+divide the fluid chamber from the nitrogen chamber of the accumulator.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 3, 'page_label': '4'}"
+8,"Hydraulic fluid is 
+allowed to flow fr eely into and out of the fluid chamber of the accumulator. The compressible 
+nitrogen acts like a spring against the hydraulic fluid. The accumulator acts as a high -pressure 
+and fluid storage and eliminates shock waves from the system. Figure 8.4 Piston type accumulator (VFW  614) 
+ 
+Filters are installed in the high -pressure and the return line. Three filter types are in use: 
+micron, porous metal, and magnetic. Micron filters  contain a treated paper element to trap 
+particles as the fluid flows through the e lement. Porous metal filters  are composed of metal 
+particles joined together by a sintering process. Magnetic filters  attract metal particles. Filters 
+consist of a head assembly that contains the fluid line connections and a bypass valve to 
+input sets swashplate angle
+piston cylinder block
+swashplate
+""out""
+""in""","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 3, 'page_label': '4'}"
+9,"Hydraulic Power 8-5 
+Prof.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 4, 'page_label': '5'}"
+10,"Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+prevent the sys tem from becoming inoperative should the filter become clogged, a bowl 
+assembly, and the filter element. Fluid enters through the head into the bowl and leaves 
+through the filter element and out of the head (Figure 8.5). Figure 8.5 Low pressure filter (A321) 
+ 
+Two principle types of valves are used in the hydraulic system: Flow control valves and 
+pressure control valves. Flow control valves  route the fluid through the system. Examples are 
+selector valves , which permit the user to channel the fluid selectiv ely and servo valves , as 
+explained above. Check valves  permit flow only in one direction. A hydraulic fuse is a safety 
+valve that prevents fluid flow in the event of a serious system leak. Examples of pressure- 
+control valves  are the pressure-relief valve  and the pressure regulator. A priority valve  is 
+mechanically identical to a pressure relief valve, set to an opening pressure below nominal 
+pressure. The priority valve is closed at low pressure and allows flow to secondary consumers 
+only if a minimum system pressure has been reached. In this way it gives priority to primary 
+consumers located upstream of the priority valve. Hydraulic fluid lines  are classified as rigid or flexible. Rigid lines  are made of either 
+aluminum for return and suction lines or of stainless steel for high -pressure lines. Flexible 
+lines are hoses typically wrapped with stainless steel braid. Fittings are used to connect fluid 
+lines with other hydraulic components.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 4, 'page_label': '5'}"
+11,"Hydraulic Power 8-6 
+Prof.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 5, 'page_label': '6'}"
+12,"Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+""The power transfer unit (PTU) is a device which uses some of the hyd raulic power in one 
+hydraulic system to supplement the hydraulic power in a second system without interchange 
+of fluid between the systems"" (ARP 1280). PTUs can be designed either to transfer power from one system to a second system in one 
+direction only (unidirectional PTU ) or to transfer power in either direction between two 
+systems (bidirectional PTU ) (Figure 8.6). The basic concept consists of a hydraulic motor 
+driving a pump, mounted back-to-back. The displacement of each of these may be the same or 
+different. Accordingly, PTUs can be used as pressure reducers, as pressure intensifiers, or to 
+maintain the same pressure in both systems. If bidirectional operation is required, both the 
+pump and the motor reverse their functions. That unit which was previ ously the pump will 
+operate as motor and vice versa. If the pressure relationship between the two systems must 
+remain the same in both directions of operation, at least one of the units must be of a variable 
+displacement design. Figure 8.6 Bidirectional power transfer unit (PTU) (A321)","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 5, 'page_label': '6'}"
+13,"Hydraulic Power 8-7 
+Prof.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 6, 'page_label': '7'}"
+14,"Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+8.5 Example: Airbus A321 
+ 
+The Airbus A321 has three main hydraulic (sub)systems (Figure 8.7). They are identified as 
+• the Green system 
+• the Blue system 
+• the Yellow systems. Together they supply hydraulic power at 20.7 MPa ( 3000 psi) to the main power users . These include: 
+• flight controls 
+• landing gear 
+• cargo doors 
+• brakes 
+• thrust reversers. Main system pumps  are the engine -driven pumps (EDPs) in the Green and Yellow system as 
+well as the electric pump in the Blue system. The th ree main systems automatically supply 
+hydraulic power when the engines operate. The two EDP are connected directly to their 
+related engine (through the accessory gearbox), and the Blue electric pump operates when any 
+one of the two engines starts. The thre e sy stem main pumps are usually set to operate 
+permanently. If necessary (because of a system fault, or for servicing), the pumps can be set to 
+off from the flight compartment. If the main pumps cannot be used, it is possible to pressurize each hydraulic system with one 
+or more of the auxiliary system pumps. • The Green system can also be pressurized by the power transfer unit (PTU). • The Blue system can also be pressurized by the ram air turbine (RAT) (Figure 8.8). • The Yellow system can also be pressurized b y the Yellow electric pump or the power 
+transfer unit (PTU). Pressurization of the hydraulic systems on the ground is possible as follows: 
+• Yellow system – with the Yellow electric pump, 
+• Green system – with the Yellow electric pump (through the PTU), 
+• Blue main system – with the Blue electric pump. For maintenance, all of the systems can be pressurized from a ground hydraulic supply. Connectors are installed on the ground service panels of the three systems. The cargo doors 
+can also be operated with a hand pump in the Yellow system.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 6, 'page_label': '7'}"
+15,"Hydraulic Power 8-8 
+Prof.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 7, 'page_label': '8'}"
+16,"Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+ 
+Figure 8.7 A321 hydraulic system schematic  
+ EDP : Engine Driven Pump 
+ M : Electric Pump   
+ RAT : Ram Air Turbine 
+ PTU : Power Transfer Unit 
+ P : Priority Valve 
+ →  : Check Valve (indicating flow direction) 
+ CSM/G : Constant Speed Motor/Generator (emergency generator) 
+ THS : Trimmable Horizontal Stabilizer (horizontal tail) 
+ WTB : Wing Tip Brake (in high lift system)","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 7, 'page_label': '8'}"
+17,"Hydraulic Power 8-9 
+Prof.","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 8, 'page_label': '9'}"
+18,"Dr. Dieter Scholz   university of ap plied sciences  hamburg   AUTOMOTIVE AND AEROSPACE ENGINEERING  
+ 
+Figure 8.8 A321 ram air turbine (RAT)","{'producer': 'Acrobat PDFWriter 4.0 für Windows', 'creator': 'Microsoft Word', 'creationdate': 'D:20021014012538', 'moddate': '2002-10-14T01:29:01+02:00', 'source': 'GenAI_LLM\\aerodocsense_understanding\\data\\ata29_doc.pdf', 'total_pages': 9, 'page': 8, 'page_label': '9'}"
