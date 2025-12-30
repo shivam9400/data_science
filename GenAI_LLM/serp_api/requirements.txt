@@ -1,0 +1,2 @@
+google-search-results   # SerpApi client
+dspy-ai                 # DSPy library

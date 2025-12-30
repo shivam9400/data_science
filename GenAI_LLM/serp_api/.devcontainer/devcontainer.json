@@ -1,0 +1,24 @@
+{
+  "name": "serpapi_codespace",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12", 
+
+  // Commands run after the container is created
+  "postCreateCommand": "pip install -r requirements.txt",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true
+    }
+  }
+}
