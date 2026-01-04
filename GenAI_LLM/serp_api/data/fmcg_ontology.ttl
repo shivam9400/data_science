@@ -1,0 +1,22 @@
+@prefix fmcg: <http://example.org/fmcg#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+fmcg:FMCG_Product a owl:Class .
+fmcg:Food rdfs:subClassOf fmcg:FMCG_Product .
+fmcg:Oils rdfs:subClassOf fmcg:Food .
+fmcg:Brand a owl:Class .
+
+fmcg:hasBrand a owl:ObjectProperty ;
+    rdfs:domain fmcg:FMCG_Product ;
+    rdfs:range fmcg:Brand .
+fmcg:isVeg a owl:DatatypeProperty .
+
+fmcg:Fortune a fmcg:Brand .
+fmcg:Saffola a fmcg:Brand .
+fmcg:SunflowerOil a fmcg:Oils ;
+    fmcg:hasBrand fmcg:Fortune ;
+    fmcg:isVeg true ;
+    rdfs:label "Sunflower Oil Fortune veg:true" .
+fmcg:Oils rdfs:label "Cooking Oils veg sunflower palm mustard" .
