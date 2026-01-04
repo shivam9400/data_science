@@ -1,9 +1,9 @@
 {
-  "name": "serpapi_codespace",
+  "name": "fmcg_validation_codespace",
   "image": "mcr.microsoft.com/devcontainers/python:3.12", 
 
   // Commands run after the container is created
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "pip install --user -r requirements.txt",
 
   "customizations": {
     "vscode": {
@@ -11,10 +11,12 @@
         "ms-python.python",
         "ms-toolsai.jupyter",
         "ms-azuretools.vscode-docker"
-      ]
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
     }
   },
-
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
