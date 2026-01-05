@@ -16,3 +16,6 @@ def main():
     print("=" * 30)
     print(f"Support Score : {result['support_score']}")
     print(f"Decision      : {result['decision']}\n")
+
+if __name__ == "__main__": 
+    main()
