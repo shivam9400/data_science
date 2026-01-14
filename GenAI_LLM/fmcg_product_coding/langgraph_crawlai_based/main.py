@@ -12,6 +12,7 @@ async def run_coder(sku_string: str):
     initial_state = {
         "raw_input": sku_string,
         "found_urls": [],
+        "current_url_index": 0,
         "scraped_content": "",
         "final_output": None,
         "error": None
@@ -28,4 +29,9 @@ async def run_coder(sku_string: str):
 
 if __name__ == "__main__":
     # Test with a messy FMCG string
-    asyncio.run(run_coder("Niv Men Clsc 50ml"))
+    prod_desc = "Nivea Intense Repair Shampoo 250 ml"
+    #prod_desc = "Hộp 30 Viên Giặt Xả Quần Áo Cao Cấp 3IN1 sử dụng tiện lợi, dễ dàng siêu sạch thơm lừng, Viên Giặt Xả 0 Quần Áo Đa Năng 3IN1 Siêu Tiện Lợi Hộp 30 Viên Giúp Giặt Quần Áo Dễ Dàng Tiện Lợi Cực Sạch Và Thơm"
+    
+    pred_cat = "Shampoo"
+    pred_brand = "Nivea"
+    asyncio.run(run_coder(prod_desc))
