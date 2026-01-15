@@ -1,9 +1,0 @@
-google-search-results   # SerpApi client
-dspy-ai                 # DSPy library
-#fasttext
-gensim 
-scikit-learn 
-numpy
-fasttext-wheel 
-rdflib
-gensim-downloader
