@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "strava": {
+      "command": "C:\\github_projects\\data_science\\GenAI_LLM\\claude_strava_assistant\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "strava_activity_mcp_server"],
+      "env": {
+        "STRAVA_CLIENT_ID": "122804",
+        "STRAVA_CLIENT_SECRET": "1f42b4147c291d37177e96f2931c616c94d4b45c",
+        "STRAVA_REFRESH_TOKEN": "81e0187705a466a7143021479abc4cbe090316a2"
+      }
+    }
+  }
+}
