@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "strava": {
+      "type": "http",
+      "url": "https://strava-mcp-5mct.onrender.com/mcp"
+    }
+  }
+}

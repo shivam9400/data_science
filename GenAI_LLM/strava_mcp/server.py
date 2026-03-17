@@ -9,7 +9,12 @@ import logging
 import os
 
 from mcp.server import Server
+from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
 from mcp.types import Tool, TextContent
+from starlette.applications import Starlette
+from starlette.routing import Route, Mount
+from starlette.responses import JSONResponse
+import uvicorn
 
 from strava_client import StravaClient
 from tools.athlete import get_athlete_tools, handle_athlete_tool
@@ -64,50 +69,35 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
         return [TextContent(type="text", text=json.dumps({"error": str(e)}))]
 
 
-def run_http():
-    import uvicorn
-    from starlette.applications import Starlette
-    from starlette.routing import Route, Mount
-    from starlette.responses import JSONResponse
-
-    # Try the new import path first, fall back to older path
-    try:
-        from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
-        logger.info("Using StreamableHTTPSessionManager")
-
-        session_manager = StreamableHTTPSessionManager(
-            app=app,
-            event_store=None,
-            json_response=False,
-            stateless=True,
-        )
-
-        async def handle_mcp(scope, receive, send):
-            await session_manager.handle_request(scope, receive, send)
-
-    except ImportError:
-        # Older mcp versions use a different path
-        from mcp.server.http import create_http_app
-        logger.info("Using create_http_app (older mcp)")
-
-        mcp_asgi = create_http_app(app)
-
-        async def handle_mcp(scope, receive, send):
-            await mcp_asgi(scope, receive, send)
+def create_app() -> Starlette:
+    session_manager = StreamableHTTPSessionManager(
+        app=app,
+        event_store=None,
+        json_response=False,
+        stateless=True,
+    )
 
     async def health(request):
         return JSONResponse({"status": "ok", "server": "strava-mcp"})
 
-    starlette_app = Starlette(
+    async def handle_mcp(scope, receive, send):
+        await session_manager.handle_request(scope, receive, send)
+
+    # ── Lifespan: start/stop the session manager properly ─────────────────────
+    @contextlib.asynccontextmanager
+    async def lifespan(app):
+        logger.info("Starting StreamableHTTPSessionManager...")
+        async with session_manager.run():
+            yield
+        logger.info("StreamableHTTPSessionManager stopped.")
+
+    return Starlette(
+        lifespan=lifespan,
         routes=[
             Route("/health", health),
             Mount("/mcp", app=handle_mcp),
-        ]
+        ],
     )
-
-    port = int(os.getenv("PORT", 8000))
-    logger.info(f"Starting Strava MCP HTTP Server on port {port}...")
-    uvicorn.run(starlette_app, host="0.0.0.0", port=port)
 
 
 def run_stdio():
@@ -122,10 +112,13 @@ def run_stdio():
 
 
 if __name__ == "__main__":
-    # Default to HTTP for Render deployment, stdio for local
     transport = os.getenv("TRANSPORT", "http").lower()
     logger.info(f"Transport mode: {transport}")
+
     if transport == "http":
-        run_http()
+        port = int(os.getenv("PORT", 8000))
+        logger.info(f"Starting Strava MCP HTTP Server on port {port}...")
+        starlette_app = create_app()
+        uvicorn.run(starlette_app, host="0.0.0.0", port=port)
     else:
         run_stdio()
