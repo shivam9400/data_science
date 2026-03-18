@@ -13,7 +13,7 @@ from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
 from mcp.types import Tool, TextContent
 from starlette.applications import Starlette
 from starlette.routing import Route, Mount
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, RedirectResponse
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 
@@ -24,6 +24,7 @@ from tools.segments import get_segment_tools, handle_segment_tool
 from tools.routes import get_route_tools, handle_route_tool
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse as JR
+from urllib.parse import urlencode
 
 class TokenAuthMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
@@ -95,6 +96,26 @@ def create_app() -> Starlette:
         stateless=True,
     )
 
+    async def authorize(request):
+        qp = request.query_params
+        
+        # Optional hardening: pin client_id and enforce S256 allowed_client_ids = {os.getenv("STRAVA_CLIENT_ID", "procam")}
+        if qp.get("client_id") not in allowed_client_ids:
+            return JSONResponse({"error": "invalid_client_id"}, status_code=400)
+
+        if qp.get("code_challenge_method", "S256") != "S256": 
+            return JSONResponse({"error": "code_challenge_method_must_be_S256"},status_code=400)
+        strava_auth_base = "https://www.strava.com/oauth/authorize"
+        forward_keys = {
+            "client_id", "response_type", "redirect_uri", "scope",
+            "state", "code_challenge", "code_challenge_method", "approval_prompt"
+        }
+        forwarded = {k:v for k,v in qp.items() if k in forward_keys}
+        forwarded.setdefault("response_type", "code")
+        forwarded.setdefault("approval_prompt", "auto")
+
+        return RedirectResponse(f"{strava_auth_base}?{urlencode(forwarded)}", status_code=302)
+    
     async def health(request):
         return JSONResponse({"status": "ok", "server": "strava-mcp"})
 
@@ -137,25 +158,6 @@ def create_app() -> Starlette:
     #         Mount("/mcp", app=handle_mcp),
     #     ],
     # )
-    async def authorize(request):
-        qp = request.query_params
-        
-        # Optional hardening: pin client_id and enforce S256 allowed_client_ids = {os.getenv("STRAVA_CLIENT_ID", "procam")}
-        if qp.get("client_id") not in allowed_client_ids:
-            return JSONResponse({"error": "invalid_client_id"}, status_code=400)
-
-        if qp.get("code_challenge_method", "S256") != "S256": 
-            return JSONResponse({"error": "code_challenge_method_must_be_S256"},status_code=400)
-        strava_auth_base = "https://www.strava.com/oauth/authorize"
-        forward_keys = {
-            "client_id", "response_type", "redirect_uri", "scope",
-            "state", "code_challenge", "code_challenge_method", "approval_prompt"
-        }
-        forwarded = {k:v for k,v in qp.items() if k in forward_keys}
-        forwarded.setdefault("response_type", "code")
-        forwarded.setdefault("approval_prompt", "auto")
-
-        return RedirectResponse)f"{strava_auth_base}?{urlencode(forwarded)}", status_code=302)
 
 def run_stdio():
     from mcp.server.stdio import stdio_server
