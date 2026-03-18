@@ -604,9 +604,14 @@ const TOOL_NAME_MAP = {
   get_segment_leaderboard:"get-segment-leaderboard", list_routes:"list-routes", get_route:"get-route",
 };
 
-const SYSTEM_PROMPT = `You are a helpful Strava fitness assistant. You have access to the user's Strava data through tool calls.
+const today = new Date();
+const SYSTEM_PROMPT = `You are a helpful Strava fitness assistant. Today's date is ${today.toDateString()} (Unix timestamp: ${Math.floor(today.getTime()/1000)}). 
+You have access to the user's Strava data through tool calls.
+
 When answering questions:
 - Always fetch real data using the available tools before answering
+- IMPORTANT: When listing activities, ALWAYS use per_page=5 unless user explicitly asks for more
+- For time-based queries like "this week", "last month" — calculate Unix timestamps from today's date
 - Present data in a clear, friendly, and insightful way
 - Use metrics meaningfully (e.g. compare to previous, note achievements)
 - Format distances in km, speeds in km/h, times nicely
@@ -667,7 +672,7 @@ async function callMCPTool(toolName, args) {
   if (!data) {
     try { data = JSON.parse(text); } catch {}
   }
-  
+
   if (!data) throw new Error("No valid response from MCP server");
   if (data.error) throw new Error(data.error.message || "MCP tool error");
 
@@ -680,6 +685,9 @@ async function callMCPTool(toolName, args) {
 async function callGroq(messages) {
   const apiKey = document.getElementById("apiKey").value.trim();
   if (!apiKey) throw new Error("Please enter your LLM API key");
+
+  //wait 2 seconds between calls to avoid rate limit
+  await new Promise(resolve => setTimeout(resolve, 2000));
 
   const resp = await fetch(GROQ_API, {
     method: "POST",
