@@ -22,7 +22,23 @@ from tools.athlete import get_athlete_tools, handle_athlete_tool
 from tools.activities import get_activity_tools, handle_activity_tool
 from tools.segments import get_segment_tools, handle_segment_tool
 from tools.routes import get_route_tools, handle_route_tool
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import JSONResponse as JR
 
+class TokenAuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        # Skip auth for health check
+        if request.url.path == "/health":
+            return await call_next(request)
+        
+        secret = os.getenv("MCP_SECRET")
+        token = request.headers.get("X-MCP-Secret")
+        
+        if not secret or token != secret:
+            return JR({"error": "Unauthorized"}, status_code=401)
+        
+        return await call_next(request)
+    
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("strava-mcp")
 
@@ -99,13 +115,17 @@ def create_app() -> Starlette:
             Mount("/mcp", app=handle_mcp),
         ],
     )
+    # authenticate
+    starlette_app.add_middleware(TokenAuthMiddleware)
+    starlette_app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
     # ── CORS fix: allow browser requests from any origin ──────────────────
-    starlette_app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+    # starlette_app.add_middleware(
+    #     CORSMiddleware,
+    #     allow_origins=["*"],
+    #     allow_methods=["*"],
+    #     allow_headers=["*"],
+    # )
 
     return starlette_app
     # return Starlette(

@@ -32,7 +32,6 @@
     overflow: hidden;
   }
 
-  /* ── Layout ── */
   .app {
     display: grid;
     grid-template-columns: 260px 1fr;
@@ -40,7 +39,6 @@
     height: 100vh;
   }
 
-  /* ── Sidebar ── */
   .sidebar {
     background: var(--dark2);
     border-right: 1px solid var(--border);
@@ -76,6 +74,7 @@
   .api-section {
     padding: 20px 24px;
     border-bottom: 1px solid var(--border);
+    overflow-y: auto;
   }
 
   .api-label {
@@ -87,9 +86,7 @@
     margin-bottom: 8px;
   }
 
-  .api-input-wrap {
-    position: relative;
-  }
+  .api-input-wrap { position: relative; }
 
   .api-input {
     width: 100%;
@@ -143,6 +140,18 @@
     color: var(--text-dimmer);
   }
 
+  /* Secret field locked indicator */
+  .secret-locked {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: #22c55e;
+  }
+  .secret-locked.hidden { display: none; }
+
   .suggestions {
     padding: 20px 24px;
     flex: 1;
@@ -190,7 +199,6 @@
     line-height: 1.6;
   }
 
-  /* ── Main ── */
   .main {
     display: flex;
     flex-direction: column;
@@ -229,7 +237,6 @@
   }
   .clear-btn:hover { border-color: var(--orange); color: var(--orange); }
 
-  /* ── Messages ── */
   .messages {
     flex: 1;
     overflow-y: auto;
@@ -245,7 +252,6 @@
   .messages::-webkit-scrollbar-track { background: transparent; }
   .messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* Empty state */
   .empty-state {
     flex: 1;
     display: flex;
@@ -257,10 +263,7 @@
     pointer-events: none;
   }
 
-  .empty-icon {
-    font-size: 3rem;
-    filter: grayscale(1);
-  }
+  .empty-icon { font-size: 3rem; filter: grayscale(1); }
 
   .empty-text {
     font-family: var(--display);
@@ -269,7 +272,6 @@
     color: var(--text-dim);
   }
 
-  /* Message bubbles */
   .msg {
     display: flex;
     gap: 14px;
@@ -297,17 +299,8 @@
     margin-top: 2px;
   }
 
-  .msg.user .msg-avatar {
-    background: var(--orange);
-    color: white;
-    font-weight: 600;
-  }
-
-  .msg.assistant .msg-avatar {
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    color: var(--orange);
-  }
+  .msg.user .msg-avatar { background: var(--orange); color: white; font-weight: 600; }
+  .msg.assistant .msg-avatar { background: var(--dark3); border: 1px solid var(--border); color: var(--orange); }
 
   .msg-body { display: flex; flex-direction: column; gap: 4px; max-width: calc(100% - 46px); }
 
@@ -340,11 +333,8 @@
     border-radius: 10px 10px 2px 10px;
   }
 
-  .msg.assistant .msg-content {
-    border-radius: 2px 10px 10px 10px;
-  }
+  .msg.assistant .msg-content { border-radius: 2px 10px 10px 10px; }
 
-  /* Tool call indicator */
   .tool-call {
     display: flex;
     align-items: center;
@@ -363,7 +353,6 @@
 
   .tool-call .tool-icon { color: var(--orange); }
 
-  /* Typing indicator */
   .typing {
     display: flex;
     align-items: center;
@@ -390,7 +379,6 @@
     30% { transform: translateY(-6px); opacity: 1; }
   }
 
-  /* ── Input ── */
   .input-area {
     padding: 20px 32px 28px;
     border-top: 1px solid var(--border);
@@ -445,7 +433,6 @@
   .send-btn:hover { background: var(--orange-dim); }
   .send-btn:active { transform: scale(0.95); }
   .send-btn:disabled { background: var(--dark4); cursor: not-allowed; }
-
   .send-btn svg { width: 16px; height: 16px; fill: white; }
 
   .input-hint {
@@ -456,11 +443,9 @@
     text-align: center;
   }
 
-  /* Scrollbar for suggestions */
   .suggestions::-webkit-scrollbar { width: 3px; }
   .suggestions::-webkit-scrollbar-thumb { background: var(--border); }
 
-  /* ── Noise overlay ── */
   .noise {
     position: fixed;
     inset: 0;
@@ -471,7 +456,6 @@
     z-index: 9999;
   }
 
-  /* ── Error toast ── */
   .toast {
     position: fixed;
     bottom: 100px;
@@ -497,13 +481,13 @@
 <div class="noise"></div>
 
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="logo">STRAVA AI<span>POWERED BY GROQ</span></div>
     </div>
 
     <div class="api-section">
+      <!-- Groq API Key -->
       <div class="api-label">Groq API Key</div>
       <div class="api-input-wrap">
         <input class="api-input" id="apiKey" type="password" placeholder="gsk_..." autocomplete="off"/>
@@ -514,9 +498,20 @@
         <div class="status-text" id="statusText">Enter your Groq API key</div>
       </div>
 
+      <!-- MCP Server URL -->
       <div class="api-label" style="margin-top:16px;">MCP Server URL</div>
       <div class="api-input-wrap">
         <input class="api-input" id="mcpUrl" type="text" value="https://strava-mcp-5mct.onrender.com/mcp" style="padding-right:12px"/>
+      </div>
+
+      <!-- ── NEW: MCP Secret ── -->
+      <div class="api-label" style="margin-top:16px;">MCP Secret</div>
+      <div class="api-input-wrap">
+        <input class="api-input" id="mcpSecret" type="password" placeholder="Your MCP_SECRET value..." autocomplete="off"/>
+        <button class="api-eye" id="secretEyeBtn" title="Toggle visibility">👁</button>
+      </div>
+      <div class="secret-locked hidden" id="secretLocked">
+        🔒 Server protected
       </div>
     </div>
 
@@ -538,7 +533,6 @@
     </div>
   </aside>
 
-  <!-- Main -->
   <main class="main">
     <div class="main-header">
       <div class="main-title">AGENT CHAT</div>
@@ -567,13 +561,11 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── State ──────────────────────────────────────────────────────────────────
 const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.3-70b-versatile"; // best free model on Groq
+const MODEL = "llama-3.3-70b-versatile";
 let conversationHistory = [];
 let isLoading = false;
 
-// ── Tool definitions (mirrors your MCP server tools) ──────────────────────
 const TOOLS = [
   { type:"function", function:{ name:"get_athlete", description:"Get the authenticated athlete's profile information.", parameters:{type:"object",properties:{},required:[]} } },
   { type:"function", function:{ name:"get_athlete_stats", description:"Get the athlete's activity statistics (totals for runs, rides, swims).", parameters:{type:"object",properties:{},required:[]} } },
@@ -593,28 +585,16 @@ const TOOLS = [
   { type:"function", function:{ name:"get_route", description:"Get details about a specific route.", parameters:{type:"object",properties:{route_id:{type:"integer"}},required:["route_id"]} } },
 ];
 
-// Map tool names (underscores) to MCP tool names (hyphens)
 const TOOL_NAME_MAP = {
-  get_athlete: "get-athlete",
-  get_athlete_stats: "get-athlete-stats",
-  get_athlete_zones: "get-athlete-zones",
-  list_activities: "list-activities",
-  get_activity: "get-activity",
-  get_activity_streams: "get-activity-streams",
-  get_activity_laps: "get-activity-laps",
-  get_activity_kudos: "get-activity-kudos",
-  get_activity_comments: "get-activity-comments",
-  get_starred_segments: "get-starred-segments",
-  explore_segments: "explore-segments",
-  get_segment: "get-segment",
-  get_segment_efforts: "get-segment-efforts",
-  get_segment_leaderboard: "get-segment-leaderboard",
-  list_routes: "list-routes",
-  get_route: "get-route",
+  get_athlete:"get-athlete", get_athlete_stats:"get-athlete-stats", get_athlete_zones:"get-athlete-zones",
+  list_activities:"list-activities", get_activity:"get-activity", get_activity_streams:"get-activity-streams",
+  get_activity_laps:"get-activity-laps", get_activity_kudos:"get-activity-kudos",
+  get_activity_comments:"get-activity-comments", get_starred_segments:"get-starred-segments",
+  explore_segments:"explore-segments", get_segment:"get-segment", get_segment_efforts:"get-segment-efforts",
+  get_segment_leaderboard:"get-segment-leaderboard", list_routes:"list-routes", get_route:"get-route",
 };
 
-const SYSTEM_PROMPT = `You are a helpful Strava fitness assistant. You have access to the user's Strava data through tool calls. 
-
+const SYSTEM_PROMPT = `You are a helpful Strava fitness assistant. You have access to the user's Strava data through tool calls.
 When answering questions:
 - Always fetch real data using the available tools before answering
 - Present data in a clear, friendly, and insightful way
@@ -623,10 +603,13 @@ When answering questions:
 - Be conversational but precise
 - If you need an activity ID or segment ID, first list activities/segments to find it`;
 
-// ── MCP Tool Caller ────────────────────────────────────────────────────────
+// ── MCP Tool Caller — now sends X-MCP-Secret header ───────────────────────
 async function callMCPTool(toolName, args) {
   const mcpUrl = document.getElementById("mcpUrl").value.trim();
+  const mcpSecret = document.getElementById("mcpSecret").value.trim();
   const mcpToolName = TOOL_NAME_MAP[toolName] || toolName.replace(/_/g, "-");
+
+  if (!mcpSecret) throw new Error("Please enter your MCP Secret in the sidebar");
 
   const body = {
     jsonrpc: "2.0",
@@ -637,15 +620,19 @@ async function callMCPTool(toolName, args) {
 
   const resp = await fetch(mcpUrl, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json, text/event-stream" },
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json, text/event-stream",
+      "X-MCP-Secret": mcpSecret   // ← sends secret to server
+    },
     body: JSON.stringify(body)
   });
 
+  if (resp.status === 401) throw new Error("Invalid MCP Secret — check your secret and try again");
   if (!resp.ok) throw new Error(`MCP error: ${resp.status}`);
 
   const text = await resp.text();
 
-  // Handle SSE or plain JSON
   let data;
   if (text.startsWith("data:")) {
     const lines = text.split("\n").filter(l => l.startsWith("data:"));
@@ -658,6 +645,7 @@ async function callMCPTool(toolName, args) {
   } else {
     data = JSON.parse(text);
   }
+
   if (!data) throw new Error("No valid response from MCP server");
   if (data.error) throw new Error(data.error.message || "MCP tool error");
 
@@ -673,10 +661,7 @@ async function callGroq(messages) {
 
   const resp = await fetch(GROQ_API, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiKey}`
-    },
+    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
@@ -697,51 +682,31 @@ async function callGroq(messages) {
 // ── Agent loop ─────────────────────────────────────────────────────────────
 async function runAgent(userMessage) {
   conversationHistory.push({ role: "user", content: userMessage });
-
   let iterations = 0;
-  const MAX_ITERATIONS = 8;
 
-  while (iterations < MAX_ITERATIONS) {
+  while (iterations < 8) {
     iterations++;
-
     const data = await callGroq(conversationHistory);
     const choice = data.choices[0];
     const msg = choice.message;
-
     conversationHistory.push(msg);
 
-    // No tool calls → final answer
-    if (!msg.tool_calls || msg.tool_calls.length === 0) {
-      return msg.content;
-    }
+    if (!msg.tool_calls || msg.tool_calls.length === 0) return msg.content;
 
-    // Process each tool call
     for (const tc of msg.tool_calls) {
       const toolName = tc.function.name;
       let args = {};
       try { args = JSON.parse(tc.function.arguments || "{}"); } catch {}
-
-      // Show tool call in UI
       showToolCall(toolName, args);
-
       let result;
-      try {
-        result = await callMCPTool(toolName, args);
-      } catch (e) {
-        result = JSON.stringify({ error: e.message });
-      }
-
-      conversationHistory.push({
-        role: "tool",
-        tool_call_id: tc.id,
-        content: result
-      });
+      try { result = await callMCPTool(toolName, args); }
+      catch (e) { result = JSON.stringify({ error: e.message }); }
+      conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: result });
     }
 
     if (choice.finish_reason === "stop") break;
   }
 
-  // Fallback: get final answer
   const final = await callGroq(conversationHistory);
   const finalMsg = final.choices[0].message;
   conversationHistory.push(finalMsg);
@@ -767,7 +732,6 @@ function addMessage(role, content) {
     </div>`;
   container.appendChild(div);
   scrollToBottom();
-  return div;
 }
 
 function showToolCall(toolName, args) {
@@ -779,7 +743,6 @@ function showToolCall(toolName, args) {
   div.innerHTML = `<span class="tool-icon">⚙</span><span>${toolName.replace(/_/g,"-")}${argStr}</span>`;
   container.appendChild(div);
   scrollToBottom();
-  return div;
 }
 
 function showTyping() {
@@ -798,22 +761,13 @@ function showTyping() {
   scrollToBottom();
 }
 
-function removeTyping() {
-  document.getElementById("typingMsg")?.remove();
-}
-
-function scrollToBottom() {
-  const m = document.getElementById("messages");
-  m.scrollTop = m.scrollHeight;
-}
+function removeTyping() { document.getElementById("typingMsg")?.remove(); }
+function scrollToBottom() { const m = document.getElementById("messages"); m.scrollTop = m.scrollHeight; }
 
 function escapeHtml(str) {
   return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/\n/g,"<br>");
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/\n/g,"<br>");
 }
 
 function showToast(msg, duration = 4000) {
@@ -831,11 +785,11 @@ function setLoading(val) {
 
 function clearChat() {
   conversationHistory = [];
-  const m = document.getElementById("messages");
-  m.innerHTML = `<div class="empty-state" id="emptyState">
-    <div class="empty-icon">🚴</div>
-    <div class="empty-text">ASK ANYTHING ABOUT YOUR STRAVA</div>
-  </div>`;
+  document.getElementById("messages").innerHTML = `
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🚴</div>
+      <div class="empty-text">ASK ANYTHING ABOUT YOUR STRAVA</div>
+    </div>`;
 }
 
 function fillPrompt(btn) {
@@ -853,18 +807,16 @@ function autoResize(el) {
 // ── Send Message ───────────────────────────────────────────────────────────
 async function sendMessage() {
   if (isLoading) return;
-
   const input = document.getElementById("chatInput");
   const text = input.value.trim();
   if (!text) return;
 
-  const apiKey = document.getElementById("apiKey").value.trim();
-  if (!apiKey) { showToast("Please enter your Groq API key first"); return; }
+  if (!document.getElementById("apiKey").value.trim()) { showToast("Please enter your Groq API key first"); return; }
+  if (!document.getElementById("mcpSecret").value.trim()) { showToast("Please enter your MCP Secret first"); return; }
 
   input.value = "";
   autoResize(input);
   setLoading(true);
-
   addMessage("user", text);
   showTyping();
 
@@ -877,7 +829,7 @@ async function sendMessage() {
     removeTyping();
     showToast(e.message);
     updateStatus(false, e.message);
-    conversationHistory.pop(); // remove failed user message
+    conversationHistory.pop();
   } finally {
     setLoading(false);
     input.focus();
@@ -904,6 +856,11 @@ document.getElementById("eyeBtn").addEventListener("click", () => {
   input.type = input.type === "password" ? "text" : "password";
 });
 
+document.getElementById("secretEyeBtn").addEventListener("click", () => {
+  const input = document.getElementById("mcpSecret");
+  input.type = input.type === "password" ? "text" : "password";
+});
+
 document.getElementById("apiKey").addEventListener("input", function() {
   const dot = document.getElementById("statusDot");
   const txt = document.getElementById("statusText");
@@ -917,6 +874,11 @@ document.getElementById("apiKey").addEventListener("input", function() {
     dot.className = "status-dot";
     txt.textContent = "Enter your Groq API key";
   }
+});
+
+document.getElementById("mcpSecret").addEventListener("input", function() {
+  const indicator = document.getElementById("secretLocked");
+  indicator.classList.toggle("hidden", this.value.length === 0);
 });
 </script>
 </body>
