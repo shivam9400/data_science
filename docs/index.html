@@ -673,7 +673,8 @@ async function callGroq(messages) {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
     body: JSON.stringify({
-      model: MODEL,
+      // model: MODEL,
+      model: document.getElementById("modelName").value.trim() || "gemini-2.5-flash",
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       tools: TOOLS,
       // tool_choice: "auto",
