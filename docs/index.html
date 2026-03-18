@@ -517,7 +517,7 @@
       <div class="api-label" style="margin-top:16px;">Model</div>
       <div class="api-input-wrap">
         <input class="api-input" id="modelName" type="text" 
-          value="gemini-2.5-flash" 
+          value="llama-3.3-70b" 
           style="padding-right:12px"
           placeholder="e.g. gemini-2.5-flash"/>
       </div>
@@ -570,9 +570,10 @@
 
 <script>
 // const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
-// const MODEL = "llama-3.1-8b-instant";
-const GROQ_API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+// const GROQ_API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+const GROQ_API = "https://api.cerebras.ai/v1/chat/completions";
 // const MODEL = "gemini-2.5-flash-preview-04-17";
+// const MODEL = "llama-3.1-8b-instant";
 let conversationHistory = [];
 let isLoading = false;
 
@@ -895,16 +896,16 @@ document.getElementById("secretEyeBtn").addEventListener("click", () => {
 document.getElementById("apiKey").addEventListener("input", function() {
   const dot = document.getElementById("statusDot");
   const txt = document.getElementById("statusText");
-  if (this.value.startsWith("AIza")) {
-    dot.className = "status-dot connected";
-    txt.textContent = "API key looks valid";
-  } else if (this.value.length > 0) {
-    dot.className = "status-dot error";
-    txt.textContent = "Key should start with AIza";
-  } else {
-    dot.className = "status-dot";
-    txt.textContent = "Enter your Groq API key";
-  }
+  // if (this.value.startsWith("AIza")) {
+  //   dot.className = "status-dot connected";
+  //   txt.textContent = "API key looks valid";
+  // } else if (this.value.length > 0) {
+  //   dot.className = "status-dot error";
+  //   txt.textContent = "Key should start with AIza";
+  // } else {
+  //   dot.className = "status-dot";
+  //   txt.textContent = "Enter your Groq API key";
+  // }
 });
 
 document.getElementById("mcpSecret").addEventListener("input", function() {
