@@ -15,6 +15,7 @@ from starlette.applications import Starlette
 from starlette.routing import Route, Mount
 from starlette.responses import JSONResponse
 import uvicorn
+from starlette.middleware.cors import CORSMiddleware
 
 from strava_client import StravaClient
 from tools.athlete import get_athlete_tools, handle_athlete_tool
@@ -91,14 +92,29 @@ def create_app() -> Starlette:
             yield
         logger.info("StreamableHTTPSessionManager stopped.")
 
-    return Starlette(
+    starlette_app = Starlette(
         lifespan=lifespan,
         routes=[
             Route("/health", health),
             Mount("/mcp", app=handle_mcp),
         ],
     )
+    # ── CORS fix: allow browser requests from any origin ──────────────────
+    starlette_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
+    return starlette_app
+    # return Starlette(
+    #     lifespan=lifespan,
+    #     routes=[
+    #         Route("/health", health),
+    #         Mount("/mcp", app=handle_mcp),
+    #     ],
+    # )
 
 def run_stdio():
     from mcp.server.stdio import stdio_server
@@ -109,7 +125,6 @@ def run_stdio():
             await app.run(read_stream, write_stream, app.create_initialization_options())
 
     asyncio.run(main())
-
 
 if __name__ == "__main__":
     transport = os.getenv("TRANSPORT", "http").lower()
