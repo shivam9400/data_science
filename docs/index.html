@@ -583,7 +583,7 @@ const TOOLS = [
   { type:"function", function:{ name:"get_athlete_zones", description:"Get heart rate and power zones.", parameters:{type:"object",properties:{},required:[]} } },
   { type:"function", function:{ name:"list_activities", description:"List recent activities.", parameters:{type:"object",properties:{per_page:{type:"integer",default:30},page:{type:"integer",default:1},before:{type:"integer"},after:{type:"integer"}},required:[]} } },
   { type:"function", function:{ name:"get_activity", description:"Get detailed info about a specific activity by ID.", parameters:{type:"object",properties:{activity_id:{type:"integer"},include_all_efforts:{type:"boolean"}},required:["activity_id"]} } },
-  { type:"function", function:{ name:"get_activity_streams", description:"Get time-series data streams (power, HR, cadence etc) for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},stream_types:{type:"array",items:{type:"string"}},compact:{type:"boolean",default:true}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_activity_streams", description:"Get time-series data streams (power, HR, cadence etc) for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},stream_types:{type:"array",items:{type:"string"}},compact:{type:"boolean"}},required:["activity_id"]} } },
   { type:"function", function:{ name:"get_activity_laps", description:"Get lap data for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"}},required:["activity_id"]} } },
   { type:"function", function:{ name:"get_activity_kudos", description:"Get kudos for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},per_page:{type:"integer"},page:{type:"integer"}},required:["activity_id"]} } },
   { type:"function", function:{ name:"get_activity_comments", description:"Get comments on an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},per_page:{type:"integer"},page:{type:"integer"}},required:["activity_id"]} } },
@@ -617,7 +617,8 @@ When answering questions:
 - Use metrics meaningfully (e.g. compare to previous, note achievements)
 - Format distances in km, speeds in km/h, times nicely
 - Be conversational but precise
-- If you need an activity ID or segment ID, first list activities/segments to find it`;
+- If you need an activity ID or segment ID, first list activities/segments to find it
+- When calling get_activity_streams, always set compact=true to reduce data size`;
 
 // ── MCP Tool Caller — now sends X-MCP-Secret header ───────────────────────
 async function callMCPTool(toolName, args) {
