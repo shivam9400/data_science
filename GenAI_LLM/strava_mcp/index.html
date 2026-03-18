@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Strava AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FC4C02;
+    --orange-dim: #c93c01;
+    --dark: #0d0d0d;
+    --dark2: #141414;
+    --dark3: #1c1c1c;
+    --dark4: #242424;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --text-dim: #888;
+    --text-dimmer: #555;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--dark);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+
+  /* ── Layout ── */
+  .app {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: 100vh;
+    height: 100vh;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    background: var(--dark2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .logo span {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    letter-spacing: 3px;
+    display: block;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .api-section {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .api-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .api-input-wrap {
+    position: relative;
+  }
+
+  .api-input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px 36px 9px 12px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .api-input:focus { border-color: var(--orange); }
+
+  .api-eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-dimmer);
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-dimmer);
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .status-dot.connected { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+  .status-dot.error { background: #ef4444; }
+
+  .status-text {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dimmer);
+  }
+
+  .suggestions {
+    padding: 20px 24px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .suggestions-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .suggestion-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.4;
+  }
+
+  .suggestion-btn:hover {
+    border-color: var(--orange);
+    color: var(--text);
+    background: var(--dark4);
+  }
+
+  .sidebar-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dimmer);
+    line-height: 1.6;
+  }
+
+  /* ── Main ── */
+  .main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .main-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .main-title {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+  }
+
+  .clear-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-dimmer);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 6px 12px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+  }
+  .clear-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ── Messages ── */
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .messages::-webkit-scrollbar { width: 4px; }
+  .messages::-webkit-scrollbar-track { background: transparent; }
+  .messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* Empty state */
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+    filter: grayscale(1);
+  }
+
+  .empty-text {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+  }
+
+  /* Message bubbles */
+  .msg {
+    display: flex;
+    gap: 14px;
+    animation: fadeUp 0.3s ease forwards;
+    max-width: 820px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.user { flex-direction: row-reverse; align-self: flex-end; }
+  .msg.assistant { align-self: flex-start; }
+
+  .msg-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .msg.user .msg-avatar {
+    background: var(--orange);
+    color: white;
+    font-weight: 600;
+  }
+
+  .msg.assistant .msg-avatar {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    color: var(--orange);
+  }
+
+  .msg-body { display: flex; flex-direction: column; gap: 4px; max-width: calc(100% - 46px); }
+
+  .msg-role {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+  }
+
+  .msg.user .msg-role { text-align: right; }
+
+  .msg-content {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .msg.user .msg-content {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: white;
+    border-radius: 10px 10px 2px 10px;
+  }
+
+  .msg.assistant .msg-content {
+    border-radius: 2px 10px 10px 10px;
+  }
+
+  /* Tool call indicator */
+  .tool-call {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark4);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--orange);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    animation: fadeUp 0.2s ease forwards;
+    max-width: 400px;
+  }
+
+  .tool-call .tool-icon { color: var(--orange); }
+
+  /* Typing indicator */
+  .typing {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 14px 18px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 2px 10px 10px 10px;
+    width: fit-content;
+  }
+
+  .typing span {
+    width: 5px;
+    height: 5px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* ── Input ── */
+  .input-area {
+    padding: 20px 32px 28px;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px 4px 4px 18px;
+    transition: border-color 0.2s;
+  }
+
+  .input-wrap:focus-within { border-color: var(--orange); }
+
+  .chat-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 10px 0;
+    resize: none;
+    max-height: 120px;
+    scrollbar-width: none;
+    line-height: 1.5;
+  }
+
+  .chat-input::placeholder { color: var(--text-dimmer); }
+
+  .send-btn {
+    background: var(--orange);
+    border: none;
+    border-radius: 7px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: 2px;
+  }
+
+  .send-btn:hover { background: var(--orange-dim); }
+  .send-btn:active { transform: scale(0.95); }
+  .send-btn:disabled { background: var(--dark4); cursor: not-allowed; }
+
+  .send-btn svg { width: 16px; height: 16px; fill: white; }
+
+  .input-hint {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dimmer);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* Scrollbar for suggestions */
+  .suggestions::-webkit-scrollbar { width: 3px; }
+  .suggestions::-webkit-scrollbar-thumb { background: var(--border); }
+
+  /* ── Noise overlay ── */
+  .noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    z-index: 9999;
+  }
+
+  /* ── Error toast ── */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #ef4444;
+    color: white;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">STRAVA AI<span>POWERED BY GROQ</span></div>
+    </div>
+
+    <div class="api-section">
+      <div class="api-label">Groq API Key</div>
+      <div class="api-input-wrap">
+        <input class="api-input" id="apiKey" type="password" placeholder="gsk_..." autocomplete="off"/>
+        <button class="api-eye" id="eyeBtn" title="Toggle visibility">👁</button>
+      </div>
+      <div class="status-row">
+        <div class="status-dot" id="statusDot"></div>
+        <div class="status-text" id="statusText">Enter your Groq API key</div>
+      </div>
+
+      <div class="api-label" style="margin-top:16px;">MCP Server URL</div>
+      <div class="api-input-wrap">
+        <input class="api-input" id="mcpUrl" type="text" value="https://strava-mcp-5mct.onrender.com/mcp" style="padding-right:12px"/>
+      </div>
+    </div>
+
+    <div class="suggestions">
+      <div class="suggestions-label">Try asking</div>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">What activities did I do this week?</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">Analyze my last cycling workout in detail</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">What are my heart rate zones?</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">Show my athlete profile and stats</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">Find popular cycling segments near Pune, India</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">How many km did I run this month?</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">What's my best segment effort?</button>
+      <button class="suggestion-btn" onclick="fillPrompt(this)">List my saved routes</button>
+    </div>
+
+    <div class="sidebar-footer">
+      Keys stored in memory only.<br/>
+      Never sent anywhere except Groq + your MCP server.
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="main-header">
+      <div class="main-title">AGENT CHAT</div>
+      <button class="clear-btn" onclick="clearChat()">CLEAR</button>
+    </div>
+
+    <div class="messages" id="messages">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🚴</div>
+        <div class="empty-text">ASK ANYTHING ABOUT YOUR STRAVA</div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <textarea class="chat-input" id="chatInput" placeholder="Ask about your activities, segments, routes..." rows="1"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">Enter to send &nbsp;·&nbsp; Shift+Enter for new line</div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
+const MODEL = "llama-3.3-70b-versatile"; // best free model on Groq
+let conversationHistory = [];
+let isLoading = false;
+
+// ── Tool definitions (mirrors your MCP server tools) ──────────────────────
+const TOOLS = [
+  { type:"function", function:{ name:"get_athlete", description:"Get the authenticated athlete's profile information.", parameters:{type:"object",properties:{},required:[]} } },
+  { type:"function", function:{ name:"get_athlete_stats", description:"Get the athlete's activity statistics (totals for runs, rides, swims).", parameters:{type:"object",properties:{},required:[]} } },
+  { type:"function", function:{ name:"get_athlete_zones", description:"Get heart rate and power zones.", parameters:{type:"object",properties:{},required:[]} } },
+  { type:"function", function:{ name:"list_activities", description:"List recent activities.", parameters:{type:"object",properties:{per_page:{type:"integer",default:30},page:{type:"integer",default:1},before:{type:"integer"},after:{type:"integer"}},required:[]} } },
+  { type:"function", function:{ name:"get_activity", description:"Get detailed info about a specific activity by ID.", parameters:{type:"object",properties:{activity_id:{type:"integer"},include_all_efforts:{type:"boolean"}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_activity_streams", description:"Get time-series data streams (power, HR, cadence etc) for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},stream_types:{type:"array",items:{type:"string"}},compact:{type:"boolean",default:true}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_activity_laps", description:"Get lap data for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_activity_kudos", description:"Get kudos for an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},per_page:{type:"integer"},page:{type:"integer"}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_activity_comments", description:"Get comments on an activity.", parameters:{type:"object",properties:{activity_id:{type:"integer"},per_page:{type:"integer"},page:{type:"integer"}},required:["activity_id"]} } },
+  { type:"function", function:{ name:"get_starred_segments", description:"Get the athlete's starred segments.", parameters:{type:"object",properties:{per_page:{type:"integer"},page:{type:"integer"}},required:[]} } },
+  { type:"function", function:{ name:"explore_segments", description:"Explore popular segments in a bounding box area.", parameters:{type:"object",properties:{bounds:{type:"string",description:"sw_lat,sw_lng,ne_lat,ne_lng"},activity_type:{type:"string",enum:["running","riding"]},min_cat:{type:"integer"},max_cat:{type:"integer"}},required:["bounds"]} } },
+  { type:"function", function:{ name:"get_segment", description:"Get detailed info about a segment.", parameters:{type:"object",properties:{segment_id:{type:"integer"}},required:["segment_id"]} } },
+  { type:"function", function:{ name:"get_segment_efforts", description:"Get efforts on a segment.", parameters:{type:"object",properties:{segment_id:{type:"integer"},per_page:{type:"integer"},page:{type:"integer"}},required:["segment_id"]} } },
+  { type:"function", function:{ name:"get_segment_leaderboard", description:"Get segment leaderboard.", parameters:{type:"object",properties:{segment_id:{type:"integer"},gender:{type:"string"},per_page:{type:"integer"},page:{type:"integer"}},required:["segment_id"]} } },
+  { type:"function", function:{ name:"list_routes", description:"List the athlete's saved routes.", parameters:{type:"object",properties:{per_page:{type:"integer"},page:{type:"integer"}},required:[]} } },
+  { type:"function", function:{ name:"get_route", description:"Get details about a specific route.", parameters:{type:"object",properties:{route_id:{type:"integer"}},required:["route_id"]} } },
+];
+
+// Map tool names (underscores) to MCP tool names (hyphens)
+const TOOL_NAME_MAP = {
+  get_athlete: "get-athlete",
+  get_athlete_stats: "get-athlete-stats",
+  get_athlete_zones: "get-athlete-zones",
+  list_activities: "list-activities",
+  get_activity: "get-activity",
+  get_activity_streams: "get-activity-streams",
+  get_activity_laps: "get-activity-laps",
+  get_activity_kudos: "get-activity-kudos",
+  get_activity_comments: "get-activity-comments",
+  get_starred_segments: "get-starred-segments",
+  explore_segments: "explore-segments",
+  get_segment: "get-segment",
+  get_segment_efforts: "get-segment-efforts",
+  get_segment_leaderboard: "get-segment-leaderboard",
+  list_routes: "list-routes",
+  get_route: "get-route",
+};
+
+const SYSTEM_PROMPT = `You are a helpful Strava fitness assistant. You have access to the user's Strava data through tool calls. 
+
+When answering questions:
+- Always fetch real data using the available tools before answering
+- Present data in a clear, friendly, and insightful way
+- Use metrics meaningfully (e.g. compare to previous, note achievements)
+- Format distances in km, speeds in km/h, times nicely
+- Be conversational but precise
+- If you need an activity ID or segment ID, first list activities/segments to find it`;
+
+// ── MCP Tool Caller ────────────────────────────────────────────────────────
+async function callMCPTool(toolName, args) {
+  const mcpUrl = document.getElementById("mcpUrl").value.trim();
+  const mcpToolName = TOOL_NAME_MAP[toolName] || toolName.replace(/_/g, "-");
+
+  const body = {
+    jsonrpc: "2.0",
+    id: Date.now(),
+    method: "tools/call",
+    params: { name: mcpToolName, arguments: args }
+  };
+
+  const resp = await fetch(mcpUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json, text/event-stream" },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) throw new Error(`MCP error: ${resp.status}`);
+
+  const text = await resp.text();
+
+  // Handle SSE or plain JSON
+  let data;
+  if (text.startsWith("data:")) {
+    const lines = text.split("\n").filter(l => l.startsWith("data:"));
+    for (const line of lines) {
+      try {
+        const parsed = JSON.parse(line.slice(5).trim());
+        if (parsed.result) { data = parsed; break; }
+      } catch {}
+    }
+  } else {
+    data = JSON.parse(text);
+  }
+
+  if (!data) throw new Error("No valid response from MCP server");
+  if (data.error) throw new Error(data.error.message || "MCP tool error");
+
+  const content = data.result?.content;
+  if (Array.isArray(content) && content[0]?.text) return content[0].text;
+  return JSON.stringify(data.result);
+}
+
+// ── Groq API caller ────────────────────────────────────────────────────────
+async function callGroq(messages) {
+  const apiKey = document.getElementById("apiKey").value.trim();
+  if (!apiKey) throw new Error("Please enter your Groq API key");
+
+  const resp = await fetch(GROQ_API, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+      tools: TOOLS,
+      tool_choice: "auto",
+      max_tokens: 2048,
+      temperature: 0.3,
+    })
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `Groq error: ${resp.status}`);
+  }
+  return resp.json();
+}
+
+// ── Agent loop ─────────────────────────────────────────────────────────────
+async function runAgent(userMessage) {
+  conversationHistory.push({ role: "user", content: userMessage });
+
+  let iterations = 0;
+  const MAX_ITERATIONS = 8;
+
+  while (iterations < MAX_ITERATIONS) {
+    iterations++;
+
+    const data = await callGroq(conversationHistory);
+    const choice = data.choices[0];
+    const msg = choice.message;
+
+    conversationHistory.push(msg);
+
+    // No tool calls → final answer
+    if (!msg.tool_calls || msg.tool_calls.length === 0) {
+      return msg.content;
+    }
+
+    // Process each tool call
+    for (const tc of msg.tool_calls) {
+      const toolName = tc.function.name;
+      let args = {};
+      try { args = JSON.parse(tc.function.arguments || "{}"); } catch {}
+
+      // Show tool call in UI
+      showToolCall(toolName, args);
+
+      let result;
+      try {
+        result = await callMCPTool(toolName, args);
+      } catch (e) {
+        result = JSON.stringify({ error: e.message });
+      }
+
+      conversationHistory.push({
+        role: "tool",
+        tool_call_id: tc.id,
+        content: result
+      });
+    }
+
+    if (choice.finish_reason === "stop") break;
+  }
+
+  // Fallback: get final answer
+  const final = await callGroq(conversationHistory);
+  const finalMsg = final.choices[0].message;
+  conversationHistory.push(finalMsg);
+  return finalMsg.content;
+}
+
+// ── UI Helpers ─────────────────────────────────────────────────────────────
+function hideEmpty() {
+  const e = document.getElementById("emptyState");
+  if (e) e.style.display = "none";
+}
+
+function addMessage(role, content) {
+  hideEmpty();
+  const container = document.getElementById("messages");
+  const div = document.createElement("div");
+  div.className = `msg ${role}`;
+  div.innerHTML = `
+    <div class="msg-avatar">${role === "user" ? "U" : "⚡"}</div>
+    <div class="msg-body">
+      <div class="msg-role">${role === "user" ? "You" : "Strava AI"}</div>
+      <div class="msg-content">${escapeHtml(content)}</div>
+    </div>`;
+  container.appendChild(div);
+  scrollToBottom();
+  return div;
+}
+
+function showToolCall(toolName, args) {
+  hideEmpty();
+  const container = document.getElementById("messages");
+  const div = document.createElement("div");
+  div.className = "tool-call";
+  const argStr = Object.keys(args).length ? ` · ${JSON.stringify(args)}` : "";
+  div.innerHTML = `<span class="tool-icon">⚙</span><span>${toolName.replace(/_/g,"-")}${argStr}</span>`;
+  container.appendChild(div);
+  scrollToBottom();
+  return div;
+}
+
+function showTyping() {
+  hideEmpty();
+  const container = document.getElementById("messages");
+  const wrap = document.createElement("div");
+  wrap.className = "msg assistant";
+  wrap.id = "typingMsg";
+  wrap.innerHTML = `
+    <div class="msg-avatar">⚡</div>
+    <div class="msg-body">
+      <div class="msg-role">Strava AI</div>
+      <div class="typing"><span></span><span></span><span></span></div>
+    </div>`;
+  container.appendChild(wrap);
+  scrollToBottom();
+}
+
+function removeTyping() {
+  document.getElementById("typingMsg")?.remove();
+}
+
+function scrollToBottom() {
+  const m = document.getElementById("messages");
+  m.scrollTop = m.scrollHeight;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/\n/g,"<br>");
+}
+
+function showToast(msg, duration = 4000) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), duration);
+}
+
+function setLoading(val) {
+  isLoading = val;
+  document.getElementById("sendBtn").disabled = val;
+  document.getElementById("chatInput").disabled = val;
+}
+
+function clearChat() {
+  conversationHistory = [];
+  const m = document.getElementById("messages");
+  m.innerHTML = `<div class="empty-state" id="emptyState">
+    <div class="empty-icon">🚴</div>
+    <div class="empty-text">ASK ANYTHING ABOUT YOUR STRAVA</div>
+  </div>`;
+}
+
+function fillPrompt(btn) {
+  const input = document.getElementById("chatInput");
+  input.value = btn.textContent.trim();
+  input.focus();
+  autoResize(input);
+}
+
+function autoResize(el) {
+  el.style.height = "auto";
+  el.style.height = Math.min(el.scrollHeight, 120) + "px";
+}
+
+// ── Send Message ───────────────────────────────────────────────────────────
+async function sendMessage() {
+  if (isLoading) return;
+
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  const apiKey = document.getElementById("apiKey").value.trim();
+  if (!apiKey) { showToast("Please enter your Groq API key first"); return; }
+
+  input.value = "";
+  autoResize(input);
+  setLoading(true);
+
+  addMessage("user", text);
+  showTyping();
+
+  try {
+    const answer = await runAgent(text);
+    removeTyping();
+    addMessage("assistant", answer);
+    updateStatus(true);
+  } catch (e) {
+    removeTyping();
+    showToast(e.message);
+    updateStatus(false, e.message);
+    conversationHistory.pop(); // remove failed user message
+  } finally {
+    setLoading(false);
+    input.focus();
+  }
+}
+
+// ── Status ─────────────────────────────────────────────────────────────────
+function updateStatus(ok, msg) {
+  const dot = document.getElementById("statusDot");
+  const txt = document.getElementById("statusText");
+  dot.className = "status-dot " + (ok ? "connected" : "error");
+  txt.textContent = ok ? "Connected" : (msg || "Error");
+}
+
+// ── Event Listeners ────────────────────────────────────────────────────────
+document.getElementById("chatInput").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+
+document.getElementById("chatInput").addEventListener("input", function() { autoResize(this); });
+
+document.getElementById("eyeBtn").addEventListener("click", () => {
+  const input = document.getElementById("apiKey");
+  input.type = input.type === "password" ? "text" : "password";
+});
+
+document.getElementById("apiKey").addEventListener("input", function() {
+  const dot = document.getElementById("statusDot");
+  const txt = document.getElementById("statusText");
+  if (this.value.startsWith("gsk_")) {
+    dot.className = "status-dot connected";
+    txt.textContent = "API key looks valid";
+  } else if (this.value.length > 0) {
+    dot.className = "status-dot error";
+    txt.textContent = "Key should start with gsk_";
+  } else {
+    dot.className = "status-dot";
+    txt.textContent = "Enter your Groq API key";
+  }
+});
+</script>
+</body>
+</html>
