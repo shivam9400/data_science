@@ -658,7 +658,6 @@ async function callMCPTool(toolName, args) {
   } else {
     data = JSON.parse(text);
   }
-
   if (!data) throw new Error("No valid response from MCP server");
   if (data.error) throw new Error(data.error.message || "MCP tool error");
 
