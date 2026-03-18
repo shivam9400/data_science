@@ -643,19 +643,31 @@ async function callMCPTool(toolName, args) {
 
   const text = await resp.text();
 
-  let data;
-  if (text.startsWith("data:")) {
-    const lines = text.split("\n").filter(l => l.startsWith("data:"));
-    for (const line of lines) {
-      try {
-        const parsed = JSON.parse(line.slice(5).trim());
-        if (parsed.result) { data = parsed; break; }
-      } catch {}
-    }
-  } else {
-    data = JSON.parse(text);
-  }
+  // let data;
+  // if (text.startsWith("data:")) {
+  //   const lines = text.split("\n").filter(l => l.startsWith("data:"));
+  //   for (const line of lines) {
+  //     try {
+  //       const parsed = JSON.parse(line.slice(5).trim());
+  //       if (parsed.result) { data = parsed; break; }
+  //     } catch {}
+  //   }
+  // } else {
+  //   data = JSON.parse(text);
+  // }
 
+  let data;
+  const lines = text.split("\n").filter(l => l.startsWith("data:"));
+  for (const line of lines) {
+    try {
+      const parsed = JSON.parse(line.slice(5).trim());
+      if (parsed.result || parsed.error) { data = parsed; break; }
+    } catch {}
+  }
+  if (!data) {
+    try { data = JSON.parse(text); } catch {}
+  }
+  
   if (!data) throw new Error("No valid response from MCP server");
   if (data.error) throw new Error(data.error.message || "MCP tool error");
 
