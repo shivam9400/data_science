@@ -27,8 +27,9 @@ from starlette.responses import JSONResponse as JR
 
 class TokenAuthMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
+        PUBLIC_PATHS = {"/health", "/authorize"}
         # Skip auth for health check
-        if request.url.path == "/health":
+        if request.url.path in PUBLIC_PATHS:
             return await call_next(request)
         
         secret = os.getenv("MCP_SECRET")
@@ -112,6 +113,7 @@ def create_app() -> Starlette:
         lifespan=lifespan,
         routes=[
             Route("/health", health),
+            Route("/authorize", authorize),
             Mount("/mcp", app=handle_mcp),
         ],
     )
@@ -135,6 +137,25 @@ def create_app() -> Starlette:
     #         Mount("/mcp", app=handle_mcp),
     #     ],
     # )
+    async def authorize(request):
+        qp = request.query_params
+        
+        # Optional hardening: pin client_id and enforce S256 allowed_client_ids = {os.getenv("STRAVA_CLIENT_ID", "procam")}
+        if qp.get("client_id") not in allowed_client_ids:
+            return JSONResponse({"error": "invalid_client_id"}, status_code=400)
+
+        if qp.get("code_challenge_method", "S256") != "S256": 
+            return JSONResponse({"error": "code_challenge_method_must_be_S256"},status_code=400)
+        strava_auth_base = "https://www.strava.com/oauth/authorize"
+        forward_keys = {
+            "client_id", "response_type", "redirect_uri", "scope",
+            "state", "code_challenge", "code_challenge_method", "approval_prompt"
+        }
+        forwarded = {k:v for k,v in qp.items() if k in forward_keys}
+        forwarded.setdefault("response_type", "code")
+        forwarded.setdefault("approval_prompt", "auto")
+
+        return RedirectResponse)f"{strava_auth_base}?{urlencode(forwarded)}", status_code=302)
 
 def run_stdio():
     from mcp.server.stdio import stdio_server
