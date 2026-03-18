@@ -513,6 +513,14 @@
       <div class="secret-locked hidden" id="secretLocked">
         🔒 Server protected
       </div>
+
+      <div class="api-label" style="margin-top:16px;">Model</div>
+      <div class="api-input-wrap">
+        <input class="api-input" id="modelName" type="text" 
+          value="gemini-2.5-flash" 
+          style="padding-right:12px"
+          placeholder="e.g. gemini-2.5-flash"/>
+      </div>
     </div>
 
     <div class="suggestions">
@@ -564,7 +572,7 @@
 // const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
 // const MODEL = "llama-3.1-8b-instant";
 const GROQ_API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-const MODEL = "gemini-2.5-flash-preview-04-17";
+// const MODEL = "gemini-2.5-flash-preview-04-17";
 let conversationHistory = [];
 let isLoading = false;
 
