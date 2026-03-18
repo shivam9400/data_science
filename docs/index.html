@@ -490,7 +490,7 @@
       <!-- Groq API Key -->
       <div class="api-label">Groq API Key</div>
       <div class="api-input-wrap">
-        <input class="api-input" id="apiKey" type="password" placeholder="Alza_..." autocomplete="off"/>
+        <input class="api-input" id="apiKey" type="password" placeholder="AIza_..." autocomplete="off"/>
         <button class="api-eye" id="eyeBtn" title="Toggle visibility">👁</button>
       </div>
       <div class="status-row">
@@ -866,12 +866,12 @@ document.getElementById("secretEyeBtn").addEventListener("click", () => {
 document.getElementById("apiKey").addEventListener("input", function() {
   const dot = document.getElementById("statusDot");
   const txt = document.getElementById("statusText");
-  if (this.value.startsWith("Alza_")) {
+  if (this.value.startsWith("AIza_")) {
     dot.className = "status-dot connected";
     txt.textContent = "API key looks valid";
   } else if (this.value.length > 0) {
     dot.className = "status-dot error";
-    txt.textContent = "Key should start with Alza_";
+    txt.textContent = "Key should start with AIza_";
   } else {
     dot.className = "status-dot";
     txt.textContent = "Enter your Groq API key";
