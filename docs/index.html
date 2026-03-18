@@ -490,7 +490,7 @@
       <!-- Groq API Key -->
       <div class="api-label">Groq API Key</div>
       <div class="api-input-wrap">
-        <input class="api-input" id="apiKey" type="password" placeholder="gsk_..." autocomplete="off"/>
+        <input class="api-input" id="apiKey" type="password" placeholder="AIza_..." autocomplete="off"/>
         <button class="api-eye" id="eyeBtn" title="Toggle visibility">👁</button>
       </div>
       <div class="status-row">
@@ -561,8 +561,10 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.1-8b-instant";
+// const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
+// const MODEL = "llama-3.1-8b-instant";
+const GROQ_API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+const MODEL = "gemini-2.5-flash-preview-04-17";
 let conversationHistory = [];
 let isLoading = false;
 
@@ -864,12 +866,12 @@ document.getElementById("secretEyeBtn").addEventListener("click", () => {
 document.getElementById("apiKey").addEventListener("input", function() {
   const dot = document.getElementById("statusDot");
   const txt = document.getElementById("statusText");
-  if (this.value.startsWith("gsk_")) {
+  if (this.value.startsWith("AIza_")) {
     dot.className = "status-dot connected";
     txt.textContent = "API key looks valid";
   } else if (this.value.length > 0) {
     dot.className = "status-dot error";
-    txt.textContent = "Key should start with gsk_";
+    txt.textContent = "Key should start with AIza_";
   } else {
     dot.className = "status-dot";
     txt.textContent = "Enter your Groq API key";
