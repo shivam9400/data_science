@@ -495,7 +495,7 @@
       </div>
       <div class="status-row">
         <div class="status-dot" id="statusDot"></div>
-        <div class="status-text" id="statusText">Enter your Groq API key</div>
+        <div class="status-text" id="statusText">Enter your LLM API key</div>
       </div>
 
       <!-- MCP Server URL -->
@@ -896,16 +896,16 @@ document.getElementById("secretEyeBtn").addEventListener("click", () => {
 document.getElementById("apiKey").addEventListener("input", function() {
   const dot = document.getElementById("statusDot");
   const txt = document.getElementById("statusText");
-  // if (this.value.startsWith("AIza")) {
-  //   dot.className = "status-dot connected";
-  //   txt.textContent = "API key looks valid";
-  // } else if (this.value.length > 0) {
-  //   dot.className = "status-dot error";
-  //   txt.textContent = "Key should start with AIza";
-  // } else {
-  //   dot.className = "status-dot";
-  //   txt.textContent = "Enter your Groq API key";
-  // }
+  if (this.value.length > 10) {
+    dot.className = "status-dot connected";
+    txt.textContent = "API key looks valid";
+  } else if (this.value.length > 0) {
+    dot.className = "status-dot error";
+    txt.textContent = "Key too short";
+  } else {
+    dot.className = "status-dot";
+    txt.textContent = "Enter your API key";
+  }
 });
 
 document.getElementById("mcpSecret").addEventListener("input", function() {
