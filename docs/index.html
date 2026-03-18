@@ -483,12 +483,12 @@
 <div class="app">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <div class="logo">STRAVA AI<span>POWERED BY GROQ</span></div>
+      <div class="logo">STRAVA AI<span>POWERED BY LLM</span></div>
     </div>
 
     <div class="api-section">
       <!-- Groq API Key -->
-      <div class="api-label">Groq API Key</div>
+      <div class="api-label">LLM API Key</div>
       <div class="api-input-wrap">
         <input class="api-input" id="apiKey" type="password" placeholder="AIza..." autocomplete="off"/>
         <button class="api-eye" id="eyeBtn" title="Toggle visibility">👁</button>
@@ -659,7 +659,7 @@ async function callMCPTool(toolName, args) {
 // ── Groq API caller ────────────────────────────────────────────────────────
 async function callGroq(messages) {
   const apiKey = document.getElementById("apiKey").value.trim();
-  if (!apiKey) throw new Error("Please enter your Groq API key");
+  if (!apiKey) throw new Error("Please enter your LLM API key");
 
   const resp = await fetch(GROQ_API, {
     method: "POST",
@@ -668,7 +668,7 @@ async function callGroq(messages) {
       model: MODEL,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       tools: TOOLS,
-      tool_choice: "auto",
+      // tool_choice: "auto",
       max_tokens: 2048,
       temperature: 0.3,
     })
