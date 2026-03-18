@@ -2,7 +2,10 @@
   "servers": {
     "strava": {
       "type": "http",
-      "url": "https://strava-mcp-5mct.onrender.com/mcp"
+      "url": "https://strava-mcp-5mct.onrender.com/mcp",
+      "headers": {
+        "X-MCP-Secret": "procam"
+      }
     }
   }
 }
