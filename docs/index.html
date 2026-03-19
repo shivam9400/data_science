@@ -612,12 +612,13 @@ You have access to the user's Strava data through tool calls.
 When answering questions:
 - Always fetch real data using the available tools before answering
 - IMPORTANT: When listing activities, ALWAYS use per_page=5 unless user explicitly asks for more
+- IMPORTANT: NEVER guess or make up activity IDs. Always call list_activities FIRST to get real IDs, then use those IDs
 - For time-based queries like "this week", "last month" — calculate Unix timestamps from today's date
 - Present data in a clear, friendly, and insightful way
 - Use metrics meaningfully (e.g. compare to previous, note achievements)
 - Format distances in km, speeds in km/h, times nicely
 - Be conversational but precise
-- If you need an activity ID or segment ID, first list activities/segments to find it
+- Always respond with a friendly text summary, never raw JSON
 - When calling get_activity_streams, always set compact=true to reduce data size`;
 
 // ── MCP Tool Caller — now sends X-MCP-Secret header ───────────────────────
@@ -747,7 +748,7 @@ async function runAgent(userMessage) {
   const final = await callGroq(conversationHistory);
   const finalMsg = final.choices[0].message;
   conversationHistory.push(finalMsg);
-  return finalMsg.content;
+  return finalMsg.content || "I completed the analysis. Please ask a specific question about your data.";
 }
 
 // ── UI Helpers ─────────────────────────────────────────────────────────────
