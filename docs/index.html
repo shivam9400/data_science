@@ -487,6 +487,29 @@
     </div>
 
     <div class="api-section">
+
+      <div class="api-label" style="margin-top:16px;">API Provider</div>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+          <input type="radio" id="apiProvider" name="apiProvider" 
+            value="https://api.cerebras.ai/v1/chat/completions" checked
+            style="accent-color:var(--orange)"/>
+          <span style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim)">Cerebras</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+          <input type="radio" name="apiProvider" 
+            value="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+            style="accent-color:var(--orange)"/>
+          <span style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim)">Gemini</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+          <input type="radio" name="apiProvider" 
+            value="https://api.groq.com/openai/v1/chat/completions"
+            style="accent-color:var(--orange)"/>
+          <span style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim)">Groq</span>
+        </label>
+      </div>
+      
       <!-- Groq API Key -->
       <div class="api-label">LLM API Key</div>
       <div class="api-input-wrap">
@@ -571,7 +594,10 @@
 <script>
 // const GROQ_API = "https://api.groq.com/openai/v1/chat/completions";
 // const GROQ_API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-const GROQ_API = "https://api.cerebras.ai/v1/chat/completions";
+// const GROQ_API = "https://api.cerebras.ai/v1/chat/completions";
+function getApiUrl() {
+  return document.getElementById("apiProvider").value;
+}
 // const MODEL = "gemini-2.5-flash-preview-04-17";
 // const MODEL = "llama-3.1-8b-instant";
 let conversationHistory = [];
@@ -696,7 +722,7 @@ async function callGroq(messages) {
   //wait 2 seconds between calls to avoid rate limit
   // await new Promise(resolve => setTimeout(resolve, 2000));
 
-  const resp = await fetch(GROQ_API, {
+  const resp = await fetch(getApiUrl(), {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
     body: JSON.stringify({
