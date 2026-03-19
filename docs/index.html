@@ -619,7 +619,11 @@ When answering questions:
 - Format distances in km, speeds in km/h, times nicely
 - Be conversational but precise
 - Always respond with a friendly text summary, never raw JSON
-- When calling get_activity_streams, always set compact=true to reduce data size`;
+- When calling get_activity_streams, always set compact=true to reduce data size
+
+- CRITICAL: NEVER make up, estimate, or assume any fitness data. Only use exact numbers from the tool results.
+- If the data is insufficient or unclear, say "I don't have enough data from your Strava to answer this accurately" — never guess.
+- If a tool result is truncated, ask the user to be more specific rather than filling in missing data.`;
 
 // ── MCP Tool Caller — now sends X-MCP-Secret header ───────────────────────
 async function callMCPTool(toolName, args) {
@@ -729,7 +733,10 @@ async function runAgent(userMessage) {
     const msg = choice.message;
     conversationHistory.push(msg);
 
-    if (!msg.tool_calls || msg.tool_calls.length === 0) return msg.content;
+    // if (!msg.tool_calls || msg.tool_calls.length === 0) return msg.content;
+    if (!msg.tool_calls || msg.tool_calls.length === 0) {
+      return msg.content || "Done! Ask me anything about your Strava data.";
+    }    
 
     for (const tc of msg.tool_calls) {
       const toolName = tc.function.name;
@@ -740,7 +747,7 @@ async function runAgent(userMessage) {
       try { result = await callMCPTool(toolName, args); }
       catch (e) { result = JSON.stringify({ error: e.message }); }
       // conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: result });
-      const truncated = result.length > 1000 ? result.slice(0, 1000) + "...[truncated]" : result;
+      const truncated = result.length > 3000 ? result.slice(0, 3000) + "...[truncated]" : result;
       conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: truncated });
     }
 
