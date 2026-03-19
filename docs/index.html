@@ -689,7 +689,7 @@ async function callGroq(messages) {
   if (!apiKey) throw new Error("Please enter your LLM API key");
 
   //wait 2 seconds between calls to avoid rate limit
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  // await new Promise(resolve => setTimeout(resolve, 2000));
 
   const resp = await fetch(GROQ_API, {
     method: "POST",
@@ -707,7 +707,7 @@ async function callGroq(messages) {
 
   if (!resp.ok) {
     const err = await resp.json().catch(() => ({}));
-    throw new Error(err.error?.message || `Groq error: ${resp.status}`);
+    throw new Error(err.error?.message || `API error: ${resp.status}`);
   }
   return resp.json();
 }
@@ -716,6 +716,10 @@ async function callGroq(messages) {
 async function runAgent(userMessage) {
   conversationHistory.push({ role: "user", content: userMessage });
   let iterations = 0;
+
+  if (conversationHistory.length > 10) {
+    conversationHistory = conversationHistory.slice(-10);
+  }
 
   while (iterations < 8) {
     iterations++;
