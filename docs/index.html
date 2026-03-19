@@ -739,7 +739,9 @@ async function runAgent(userMessage) {
       let result;
       try { result = await callMCPTool(toolName, args); }
       catch (e) { result = JSON.stringify({ error: e.message }); }
-      conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: result });
+      // conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: result });
+      const truncated = result.length > 1000 ? result.slice(0, 1000) + "...[truncated]" : result;
+      conversationHistory.push({ role: "tool", tool_call_id: tc.id, content: truncated });
     }
 
     if (choice.finish_reason === "stop") break;
