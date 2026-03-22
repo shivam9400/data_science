@@ -1,0 +1,21 @@
+research_task:
+  description: >
+    1. Search for the 3 latest {category} launches in India.
+    2. For each, identify: RAM, ROM, Processor, and Camera specs.
+    3. Find the current retail price range on e-commerce platforms.
+    4. Format all findings into a Markdown table.
+  expected_output: >
+    A structured Markdown table comparing the 3 discovered products.
+  agent: technical_researcher
+
+strategic_analysis_task:
+  description: >
+    1. Review the data from the research_task.
+    2. Compare these 3 products against the {reference_product}.
+    3. Perform a SWOT analysis for each compared to the {reference_product}.
+    4. Provide 3 actionable recommendations for a brand manager.
+    5. Include the source links for the data found.
+  expected_output: >
+    A professional market intelligence report including a SWOT analysis, 
+    comparison summary, and strategic recommendations with source links.
+  agent: market_strategist
