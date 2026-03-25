@@ -5,8 +5,11 @@ research_task:
     3. Find the current retail price range on e-commerce platforms.
     4. Format all findings into a Markdown table.
   expected_output: >
-    A structured Markdown table comparing the 3 discovered products.
+    A Markdown table with exactly these headers:
+    | Smartphone | RAM | ROM | Processor | Camera (Rear) | Price (INR) |
+    | :--- | :--- | :--- | :--- | :--- | :--- |
   agent: technical_researcher
+  output_file: scratchpad/researcher_notes.md
 
 strategic_analysis_task:
   description: >
@@ -16,6 +19,28 @@ strategic_analysis_task:
     4. Provide 3 actionable recommendations for a brand manager.
     5. Include the source links for the data found.
   expected_output: >
-    A professional market intelligence report including a SWOT analysis, 
-    comparison summary, and strategic recommendations with source links.
+    A market intelligence report strictly following this structure:
+    
+    ## Market Intelligence Report: Competitive Positioning vs. {reference_product}
+    **To:** Brand Management Team
+    **From:** Consumer Tech Strategy Consultant
+    **Subject:** Strategic Positioning vs. {reference_product} (INR Market)
+
+    ### 1. Executive Summary
+    [Brief overview of the benchmark product]
+
+    ### 2. SWOT Analysis Table
+    | Smartphone | Strengths | Weaknesses | Opportunities | Threats |
+    | :--- | :--- | :--- | :--- | :--- |
+    [Fill rows here]
+
+    ### 3. Comparison Summary
+    [Bullet points on Performance and Value Gap]
+
+    ### 4. Strategic Recommendations
+    [3 detailed recommendations with 'Action' and 'Strategy' sub-points]
+
+    ### 5. Data Sources
+    [List of URLs]
   agent: market_strategist
+  output_file: output/market_report.md

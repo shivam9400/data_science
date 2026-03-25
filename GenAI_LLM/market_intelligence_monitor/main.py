@@ -1,23 +1,14 @@
 from dotenv import load_dotenv
 from src.market_crew.crew import TechMarketCrew
 
-# Load API Keys from .env
+# Environment setup: Load API Keys from .env
 load_dotenv()
 
-def run():
-    inputs = {
-        'category': 'Premium Smartphones',
-        'reference_product': 'iPhone 15 Pro'
-    }
-    TechMarketCrew().crew().kickoff(inputs=inputs)
-
-# if __name__ == "__main__":
-#     run()
-
 if __name__ == "__main__":
+    # Initialization: Create an instance of your custom Crew defined in the src folder
     test_crew_instance = TechMarketCrew()
     
-    # We define the inputs our YAML files are looking for
+    # Input Parameters: These values are passed into the YAML templates
     inputs = {
         'category': 'Smartphones',
         'reference_product': 'iPhone 15'
@@ -25,6 +16,7 @@ if __name__ == "__main__":
     
     print("\n--- Kicking off the Crew ---")
     try:
+        # Execution: .crew() assembles the agents and tasks, .kickoff() starts the process
         result = test_crew_instance.crew().kickoff(inputs=inputs)
         print(f"Final Result: {result}")
     except Exception as e:
