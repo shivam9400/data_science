@@ -1,5 +1,5 @@
 | Smartphone | RAM | ROM | Processor | Camera (Rear) | Price (INR) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Apple iPhone 16 | 8GB | 128GB/256GB/512GB | A18 Chip | 48MP (Main) + 12MP (Ultrawide) | 79,900 - 1,09,900 |
-| Motorola Razr 50 | 8GB | 256GB | MediaTek Dimensity 7300X | 50MP (Main) + 13MP (Ultrawide) | 40,999 - 44,999 |
-| Samsung Galaxy S24 FE | 8GB | 128GB/256GB | Exynos 2400e | 50MP (Main) + 12MP (Ultrawide) + 8MP (Telephoto) | 35,999 - 65,999 |
+| Vivo V40 | 8GB / 12GB | 128GB / 256GB / 512GB | Snapdragon 7 Gen 3 | 50MP + 50MP | ₹34,999 - ₹41,999 |
+| Motorola Edge 50 Neo | 8GB | 256GB | MediaTek Dimensity 7300 | 50MP + 13MP + 10MP | ₹23,999 - ₹24,999 |
+| Realme 13 Pro 5G | 8GB / 12GB | 128GB / 256GB / 512GB | Snapdragon 7s Gen 2 | 50MP + 8MP + 2MP | ₹19,999 - ₹26,999 |

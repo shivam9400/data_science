@@ -44,3 +44,39 @@ strategic_analysis_task:
     [List of URLs]
   agent: market_strategist
   output_file: output/market_report.md
+
+trend_forecasting_task:
+  description: >
+    1. Analyze the research data and strategic analysis provided.
+    2. Identify current market trends: price movements, feature adoption, buyer preferences.
+    3. Research upcoming {category} launches and technology announcements.
+    4. Predict 6-12 month market trajectory for the {category} segment.
+    5. Identify emerging opportunities and threats based on trend analysis.
+  expected_output: >
+    A trend forecast report with this structure:
+    
+    ## Market Trend Forecast: {category} (Next 6-12 Months)
+    
+    ### 1. Current Market Trends
+    - Price momentum and historical trajectory
+    - Feature adoption patterns (AI, high refresh rate, etc.)
+    - Consumer preference shifts
+    - Segment growth rates
+    
+    ### 2. Upcoming Launches & Announcements
+    - Expected new product launches (with timeline)
+    - Anticipated technology breakthroughs
+    - Strategic brand moves
+    
+    ### 3. Market Forecast
+    - Predicted price movement (6 and 12 months)
+    - Technology adoption curve trajectory
+    - Expected market consolidation
+    - Segment growth forecasts
+    
+    ### 4. Opportunities & Threats
+    - 3 emerging opportunities for brands to capitalize on
+    - 3 potential threats to current market share
+    - Recommended strategic actions to prepare
+  agent: trend_forecaster
+  output_file: output/trend_forecast.md

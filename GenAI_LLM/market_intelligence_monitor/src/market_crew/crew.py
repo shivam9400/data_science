@@ -46,6 +46,16 @@ class TechMarketCrew():
             verbose=True
         )
 
+    # AGENT DEFINITION: The Trend Forecaster - responsible for predicting market movements
+    @agent
+    def trend_forecaster(self) -> Agent:
+        return Agent(
+            config=self.agents_config['trend_forecaster'],
+            tools=[search_tool_fn],
+            llm=self.llm,
+            verbose=True
+        )
+
     # TASK DEFINITION: The research phase
     @task
     def research_task(self) -> Task:
@@ -58,6 +68,13 @@ class TechMarketCrew():
     def strategic_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['strategic_analysis_task'],
+        )
+
+    # TASK DEFINITION: The trend forecasting phase
+    @task
+    def trend_forecasting_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['trend_forecasting_task'],
         )
 
     # WORKFLOW ASSEMBLY: Defines how the agents and tasks work together
