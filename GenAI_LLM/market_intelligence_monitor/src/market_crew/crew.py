@@ -56,6 +56,45 @@ class TechMarketCrew():
             verbose=True
         )
 
+    # AGENT DEFINITION: The Price Analyst - responsible for pricing intelligence and elasticity
+    @agent
+    def price_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['price_analyst'],
+            tools=[search_tool_fn],
+            llm=self.llm,
+            verbose=True
+        )
+
+    # AGENT DEFINITION: The Sentiment Analyst - responsible for consumer sentiment analysis
+    @agent
+    def sentiment_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['sentiment_analyst'],
+            tools=[search_tool_fn],
+            llm=self.llm,
+            verbose=True
+        )
+
+    # AGENT DEFINITION: The Market Share Analyst - responsible for market share estimation
+    @agent
+    def market_share_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['market_share_analyst'],
+            tools=[search_tool_fn],
+            llm=self.llm,
+            verbose=True
+        )
+
+    # AGENT DEFINITION: The ROI Simulator - responsible for financial scenario modeling
+    @agent
+    def roi_simulator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['roi_simulator'],
+            llm=self.llm,
+            verbose=True
+        )
+
     # TASK DEFINITION: The research phase
     @task
     def research_task(self) -> Task:
@@ -75,6 +114,34 @@ class TechMarketCrew():
     def trend_forecasting_task(self) -> Task:
         return Task(
             config=self.tasks_config['trend_forecasting_task'],
+        )
+
+    # TASK DEFINITION: The price analysis phase
+    @task
+    def price_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['price_analysis_task'],
+        )
+
+    # TASK DEFINITION: The sentiment analysis phase
+    @task
+    def sentiment_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['sentiment_analysis_task'],
+        )
+
+    # TASK DEFINITION: The market share analysis phase
+    @task
+    def market_share_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['market_share_task'],
+        )
+
+    # TASK DEFINITION: The ROI simulation phase
+    @task
+    def roi_simulation_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['roi_simulation_task'],
         )
 
     # WORKFLOW ASSEMBLY: Defines how the agents and tasks work together

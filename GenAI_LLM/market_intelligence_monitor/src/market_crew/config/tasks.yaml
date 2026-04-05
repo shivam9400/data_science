@@ -80,3 +80,196 @@ trend_forecasting_task:
     - Recommended strategic actions to prepare
   agent: trend_forecaster
   output_file: output/trend_forecast.md
+
+price_analysis_task:
+  description: >
+    1. Search for 6-12 month price history of the top 3 {category} products.
+    2. Calculate price trends: moving averages, price drops, seasonal patterns.
+    3. Estimate price elasticity: how demand changes with ±5%, ±10%, ±15% price changes.
+    4. Compare the {reference_product} pricing vs. competitors over time.
+    5. Identify underpriced and overpriced segments.
+  expected_output: >
+    A price analysis report with this structure:
+    
+    ## Price History & Elasticity Analysis: {category}
+    
+    ### 1. Price Movement Summary (Last 6-12 Months)
+    - Historical price trends for top products with dates
+    - Average price points by segment
+    - Seasonal patterns and promotional periods
+    
+    ### 2. Price Elasticity Analysis
+    - Estimated elasticity coefficients for each product/segment
+    - Scenario modeling: Impact of ±5%, ±10%, ±15% price changes on demand
+    - Price sensitivity by customer segment (budget, mid-range, premium)
+    
+    ### 3. Competitive Pricing Strategy
+    - {reference_product} positioning vs. competitors
+    - Value-to-price ratio analysis
+    - Recommended price positioning for market share gains
+    
+    ### 4. Pricing Recommendations
+    - Optimal price points by segment
+    - Bundle opportunities
+    - Discount/promotion strategy
+  agent: price_analyst
+  output_file: output/price_analysis.md
+
+sentiment_analysis_task:
+  description: >
+    1. Search Amazon reviews, Reddit discussions (/r/smartphones, /r/android, /r/apple), 
+       and tech forums for {category} mentions.
+    2. Analyze sentiment: positive, negative, neutral mentions for top products.
+    3. Identify key sentiment drivers: design, camera, performance, battery, price.
+    4. Compare brand perception vs. spec-based performance (perception gap analysis).
+    5. Measure brand loyalty and NPS proxy indicators.
+  expected_output: >
+    A consumer sentiment report with this structure:
+    
+    ## Consumer Sentiment Analysis: {category}
+    
+    ### 1. Overall Brand Sentiment Summary
+    - Sentiment breakdown (% Positive, Neutral, Negative) for each major brand
+    - Sentiment trends: improving vs. declining
+    - {reference_product} sentiment vs. top competitors
+    
+    ### 2. Sentiment by Product Attribute
+    | Attribute | Brand A | Brand B | Brand C | {reference_product} |
+    | :--- | :--- | :--- | :--- | :--- |
+    | Design & Build | [Sentiment] | [Sentiment] | [Sentiment] | [Sentiment] |
+    | Camera Quality | [Sentiment] | [Sentiment] | [Sentiment] | [Sentiment] |
+    | Performance | [Sentiment] | [Sentiment] | [Sentiment] | [Sentiment] |
+    | Battery Life | [Sentiment] | [Sentiment] | [Sentiment] | [Sentiment] |
+    | Value for Money | [Sentiment] | [Sentiment] | [Sentiment] | [Sentiment] |
+    
+    ### 3. Perception Gap Analysis
+    - Where specs outperform perception (underrated products)
+    - Where specs underperform perception (overrated products)
+    - Key messaging opportunities
+    
+    ### 4. Brand Loyalty & Switching Indicators
+    - Customer satisfaction indicators
+    - Switching intent signals
+    - Repeat purchase likelihood
+    
+    ### 5. Key Action Items
+    - Top sentiment-driving opportunities
+    - Perception improvement areas
+  agent: sentiment_analyst
+  output_file: output/sentiment_analysis.md
+
+market_share_task:
+  description: >
+    1. Search for market share data, sales rankings, and web traffic for {category} brands.
+    2. Analyze search volume trends (Google Trends) for product names and comparisons.
+    3. Track social media mentions, post engagement, and audience growth trends.
+    4. Estimate sales velocity through e-commerce rankings and bestseller lists.
+    5. Identify gaining and losing market share competitors over 6 months.
+  expected_output: >
+    A market share estimation report with this structure:
+    
+    ## Market Share Estimation & Competitive Positioning: {category}
+    
+    ### 1. Estimated Market Share by Brand
+    - Current estimated market share (% volume or units)
+    - Confidence levels (based on data sources)
+    - Regional variations (if applicable)
+    
+    ### 2. Market Share Trends (6-Month View)
+    | Brand | 6 Months Ago | Current | Change | Trajectory |
+    | :--- | :--- | :--- | :--- | :--- |
+    | Brand A | [%] | [%] | [+/- %] | [↑/↓] |
+    | Brand B | [%] | [%] | [+/- %] | [↑/↓] |
+    | {reference_product} | [%] | [%] | [+/- %] | [↑/↓] |
+    
+    ### 3. Competitive Velocity Indicators
+    - Search volume trends for brand comparisons
+    - Social media engagement velocity
+    - Web traffic patterns (e-commerce, brand sites)
+    - Sales ranking changes
+    
+    ### 4. Gaining vs. Losing Competitors
+    - Top 3 gaining competitors (with reasons)
+    - Top 3 losing competitors (with reasons)
+    - {reference_product} competitive position
+    
+    ### 5. Market Share Drivers & Opportunities
+    - Key drivers of share gains (features, pricing, marketing)
+    - Potential share capture opportunities
+    - Vulnerabilities of leading competitors
+  agent: market_share_analyst
+  output_file: output/market_share_analysis.md
+
+roi_simulation_task:
+  description: >
+    1. Using data from price and sentiment analysis, build financial scenarios.
+    2. Model ROI scenarios: Price reduction by 5%, 10%, 15% and resulting volume uplift.
+    3. Calculate margin impact: Unit economics (COGS base assumed at 60% of price).
+    4. Estimate addressable market gains based on competitor analysis.
+    5. Model feature/specification upgrade costs and revenue upside.
+    6. Provide breakeven analysis for different strategies.
+  expected_output: >
+    An ROI strategy simulation report with this structure:
+    
+    ## ROI Scenario Simulator: {category} Strategy Analysis
+    
+    ### 1. Baseline Unit Economics (Current State)
+    - Current price point: [INR]
+    - Estimated current volume/month: [units]
+    - Assumed COGS: [INR/unit]
+    - Current gross margin: [%]
+    - Current revenue/month: [INR]
+    
+    ### 2. Price Reduction Scenarios
+    
+    #### Scenario A: Price Cut 5%
+    - New price: [INR]
+    - Estimated volume uplift (based on elasticity): [%]
+    - New revenue/month: [INR]
+    - Gross margin impact: [%]
+    - ROI over 12 months: [+/- %]
+    
+    #### Scenario B: Price Cut 10%
+    - New price: [INR]
+    - Estimated volume uplift: [%]
+    - New revenue/month: [INR]
+    - Gross margin impact: [%]
+    - ROI over 12 months: [+/- %]
+    
+    #### Scenario C: Price Cut 15%
+    - New price: [INR]
+    - Estimated volume uplift: [%]
+    - New revenue/month: [INR]
+    - Gross margin impact: [%]
+    - ROI over 12 months: [+/- %]
+    
+    ### 3. Segment-Targeted Strategies
+    
+    #### Strategy 1: Premium Positioning (Maintain Price)
+    - Target: Top 20% by price sensitivity = [INR] segment
+    - Volume impact: [small volume, high margin]
+    - 12-month revenue impact: [INR]
+    
+    #### Strategy 2: Mid-Market Positioning (10% price cut)
+    - Target: 50-70% price-conscious buyers = [INR] segment
+    - Volume impact: [moderate volume, moderate margin]
+    - 12-month revenue impact: [INR]
+    
+    #### Strategy 3: Volume Play (15% price cut)
+    - Target: Budget buyers = [INR] segment
+    - Volume impact: [high volume, thin margin]
+    - 12-month revenue impact: [INR]
+    
+    ### 4. Feature Addition / Spec Upgrade ROI
+    - Cost to add feature X: [INR/unit]
+    - Revenue uplift from feature: [%]
+    - Payback period: [months]
+    - Recommendation: Yes/No
+    
+    ### 5. Recommended Strategy & Breakeven Analysis
+    - Recommended approach based on competitive analysis
+    - Breakeven volume (units/month needed to maintain profit)
+    - 12-month revenue and profit projections
+    - Risk factors and confidence level
+  agent: roi_simulator
+  output_file: output/roi_simulation.md
